@@ -1,1 +1,195 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 607"><rect width="280" height="607" fill="#e8f3ec"/><text x="140" y="300" font-family="sans-serif" font-size="16" fill="#1f9d52" text-anchor="middle">07-ranks-team</text><text x="140" y="328" font-family="sans-serif" font-size="11" fill="#5f6360" text-anchor="middle">replace with real screen</text></svg>
+<svg viewBox="0 0 520 1040" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" font-family="-apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <linearGradient id="sprout" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3ec46d"/>
+      <stop offset="100%" stop-color="#1f9d52"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2bb45f"/>
+      <stop offset="100%" stop-color="#0f5e30"/>
+    </linearGradient>
+    <linearGradient id="headerFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#178043"/>
+      <stop offset="20%" stop-color="#1f9d52"/>
+      <stop offset="100%" stop-color="#f4f7f4"/>
+    </linearGradient>
+    <radialGradient id="tabGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="deviceShadow" x="-30%" y="-20%" width="160%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="22" flood-color="#000000" flood-opacity="0.7"/>
+    </filter>
+    <filter id="camShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#0c5a2e" flood-opacity="0.5"/>
+    </filter>
+    <clipPath id="screenClip"><rect x="65" y="76" width="390" height="847" rx="42"/></clipPath>
+  </defs>
+
+  <rect width="520" height="1040" fill="#f7f6f1"/>
+  <rect x="51" y="62" width="418" height="875" rx="62" fill="#1c1c1e" filter="url(#deviceShadow)"/>
+  <rect x="54" y="65" width="412" height="869" rx="59" fill="none" stroke="#3a3a3c" stroke-width="2"/>
+  <rect x="61" y="72" width="398" height="855" rx="48" fill="#000000"/>
+
+  <g clip-path="url(#screenClip)">
+    <g transform="translate(65,76)">
+      <rect width="390" height="847" fill="#f4f7f4"/>
+
+      <!-- Green gradient hero header -->
+      <rect y="0" width="390" height="230" fill="url(#headerFade)"/>
+
+      <!-- Status bar (white) -->
+      <text x="32" y="50" fill="#ffffff" font-size="16" font-weight="600">16:30</text>
+      <g transform="translate(302,38)" fill="#ffffff">
+        <rect x="0" y="8" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="8" rx="1"/>
+        <rect x="10" y="2" width="3" height="11" rx="1"/><rect x="15" y="0" width="3" height="13" rx="1"/>
+      </g>
+      <path d="M328 42 a14 14 0 0 1 20 0 M332 46 a8 8 0 0 1 12 0" stroke="#ffffff" stroke-width="1.6" fill="none"/>
+      <circle cx="338" cy="50" r="1.8" fill="#ffffff"/>
+      <rect x="354" y="38" width="24" height="12" rx="3" fill="none" stroke="#ffffff" stroke-opacity="0.7"/>
+      <rect x="356" y="40" width="18" height="8" rx="1.5" fill="#ffffff"/>
+      <rect x="143" y="22" width="104" height="30" rx="15" fill="#000000"/>
+
+      <!-- App icon corner mark -->
+      <g transform="translate(20,72)"><rect width="30" height="30" rx="8" fill="#ffffff"/><text x="15" y="22" fill="#1f9d52" font-size="19" font-weight="800" text-anchor="middle" font-family="Georgia, serif">S</text></g>
+      <!-- Title -->
+      <text x="58" y="93" fill="#ffffff" font-size="20" font-weight="700" font-family="Georgia, serif">Ranks</text>
+
+      <!-- Team / Leaderboard toggle -->
+      <g transform="translate(20,116)">
+        <rect width="350" height="40" rx="20" fill="#e6ece7"/>
+        <rect x="3" y="3" width="172" height="34" rx="17" fill="url(#sprout)"/>
+        <text x="89" y="25" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">My Team</text>
+        <text x="262" y="25" fill="#7a8a7e" font-size="13" font-weight="600" text-anchor="middle">Leaderboard</text>
+      </g>
+
+      <!-- HERO team card -->
+      <rect x="20" y="176" width="350" height="150" rx="22" fill="url(#hero)" filter="url(#camShadow)"/>
+      <circle cx="56" cy="218" r="26" fill="#ffffff" opacity="0.18"/>
+      <text x="56" y="226" fill="#ffffff" font-size="22" font-weight="800" text-anchor="middle" font-family="Georgia, serif">L</text>
+      <text x="92" y="210" fill="#ffffff" font-size="19" font-weight="800">Leaf It Up to Marketing</text>
+      <text x="92" y="230" fill="#bdebcd" font-size="12" font-weight="600">Marketing Department   &#183;  12 members</text>
+      <!-- score -->
+      <text x="40" y="288" fill="#ffffff" font-size="40" font-weight="800">8,420</text>
+      <text x="42" y="308" fill="#bdebcd" font-size="12" font-weight="600">total team points</text>
+      <!-- streak pill -->
+      <g transform="translate(232,266)">
+        <rect width="116" height="34" rx="17" fill="#ffffff" opacity="0.18"/>
+        <path d="M16 7 C20 12 22 14 22 19 a6 6 0 0 1 -12 0 C10 15 13 14 13 10 C15 12 16 13 16 13 C16 11 15 9 16 7 Z" fill="#ffffff"/>
+        <text x="27" y="22" fill="#ffffff" font-size="13" font-weight="700">19 day streak</text>
+      </g>
+
+      <!-- Quick stats row -->
+      <g transform="translate(20,342)">
+        <rect width="112" height="64" rx="16" fill="#ffffff" stroke="#e8ede8"/>
+        <text x="16" y="30" fill="#1f9d52" font-size="20" font-weight="800">531</text>
+        <text x="16" y="48" fill="#7a8a7e" font-size="10.5">acts logged</text>
+
+        <rect x="119" y="0" width="112" height="64" rx="16" fill="#ffffff" stroke="#e8ede8"/>
+        <text x="135" y="30" fill="#1f9d52" font-size="20" font-weight="800">2nd</text>
+        <text x="135" y="48" fill="#7a8a7e" font-size="10.5">company rank</text>
+
+        <rect x="238" y="0" width="112" height="64" rx="16" fill="#ffffff" stroke="#e8ede8"/>
+        <text x="254" y="30" fill="#1f9d52" font-size="20" font-weight="800">83%</text>
+        <text x="254" y="48" fill="#7a8a7e" font-size="10.5">team active</text>
+      </g>
+
+      <!-- Programme goal progress -->
+      <g transform="translate(20,424)">
+        <text x="4" y="0" fill="#16331f" font-size="13" font-weight="700">Programme team goal</text>
+        <text x="346" y="0" fill="#7a8a7e" font-size="12" text-anchor="end">8,420 / 10,000</text>
+        <rect x="0" y="10" width="350" height="12" rx="6" fill="#e6ece7"/>
+        <rect x="0" y="10" width="295" height="12" rx="6" fill="url(#sprout)"/>
+        <text x="0" y="40" fill="#7a8a7e" font-size="11">1,580 points to hit the programme target</text>
+      </g>
+
+      <!-- Top contributors -->
+      <text x="24" y="500" fill="#16331f" font-size="13" font-weight="700">Top contributors</text>
+      <text x="356" y="500" fill="#1f9d52" font-size="12" font-weight="600" text-anchor="end">See all</text>
+
+      <g transform="translate(20,510)">
+        <rect y="0" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="21" r="13" fill="#cfe8d6"/><text x="26" y="25" fill="#2f7d49" font-size="11" font-weight="700" text-anchor="middle">JS</text>
+        <text x="48" y="18" fill="#16331f" font-size="12.5" font-weight="700">Jane Smith</text>
+        <text x="48" y="32" fill="#7a8a7e" font-size="10.5">Cleaner of Beaches</text>
+        <text x="338" y="25" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">1,240</text>
+
+        <rect y="44" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="65" r="13" fill="#d3e3f0"/><text x="26" y="69" fill="#3f6fa0" font-size="11" font-weight="700" text-anchor="middle">AO</text>
+        <text x="48" y="62" fill="#16331f" font-size="12.5" font-weight="700">Aoife O'Brien</text>
+        <text x="48" y="76" fill="#7a8a7e" font-size="10.5">Tour de London Athlete</text>
+        <text x="338" y="69" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">1,110</text>
+
+        <rect y="88" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="109" r="13" fill="#f0e0cf"/><text x="26" y="113" fill="#9a6b2f" font-size="11" font-weight="700" text-anchor="middle">TM</text>
+        <text x="48" y="106" fill="#16331f" font-size="12.5" font-weight="700">Tom Mitchell</text>
+        <text x="48" y="120" fill="#7a8a7e" font-size="10.5">No-Plastic Ninja</text>
+        <text x="338" y="113" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">980</text>
+
+        <rect y="132" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="153" r="13" fill="#e3d5f0"/><text x="26" y="157" fill="#6b4f9a" font-size="11" font-weight="700" text-anchor="middle">RW</text>
+        <text x="48" y="150" fill="#16331f" font-size="12.5" font-weight="700">Ria Walsh</text>
+        <text x="48" y="164" fill="#7a8a7e" font-size="10.5">Compost Queen</text>
+        <text x="338" y="157" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">870</text>
+
+        <rect y="176" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="197" r="13" fill="#cfe8e0"/><text x="26" y="201" fill="#2f7d6b" font-size="11" font-weight="700" text-anchor="middle">DK</text>
+        <text x="48" y="194" fill="#16331f" font-size="12.5" font-weight="700">Dan Kelly</text>
+        <text x="48" y="208" fill="#7a8a7e" font-size="10.5">Meat-Free Maverick</text>
+        <text x="338" y="201" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">760</text>
+
+        <rect y="220" width="350" height="40" rx="13" fill="#ffffff" stroke="#eef2ee"/>
+        <circle cx="26" cy="241" r="13" fill="#f0d5d5"/><text x="26" y="245" fill="#9a4f4f" font-size="11" font-weight="700" text-anchor="middle">LP</text>
+        <text x="48" y="238" fill="#16331f" font-size="12.5" font-weight="700">Lucy Park</text>
+        <text x="48" y="252" fill="#7a8a7e" font-size="10.5">Litter Hunter</text>
+        <text x="338" y="245" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">640</text>
+      </g>
+
+      <!-- ===== BOTTOM TAB BAR (Ranks active) ===== -->
+      <g transform="translate(0,759)">
+        <rect width="390" height="88" fill="#ffffff"/>
+        <line x1="0" y1="0" x2="390" y2="0" stroke="#e3e9e3" stroke-width="1"/>
+
+        <!-- Feed -->
+        <g transform="translate(33,22)">
+          <rect x="0" y="0" width="22" height="22" rx="4" fill="none" stroke="#9aa89d" stroke-width="2.2"/>
+          <line x1="4" y1="7" x2="18" y2="7" stroke="#9aa89d" stroke-width="2.2"/>
+          <line x1="4" y1="12" x2="18" y2="12" stroke="#9aa89d" stroke-width="2.2"/>
+          <line x1="4" y1="17" x2="13" y2="17" stroke="#9aa89d" stroke-width="2.2"/>
+        </g>
+        <text x="44" y="62" fill="#9aa89d" font-size="10" font-weight="600" text-anchor="middle">Feed</text>
+
+        <!-- Learn -->
+        <g transform="translate(112,23)" stroke="#9aa89d" stroke-width="2" fill="none"><path d="M2 4 h9 a3 3 0 0 1 3 3 v15 a3 3 0 0 0 -3 -2 h-9 z"/><path d="M24 4 h-9 a3 3 0 0 0 -3 3 v15 a3 3 0 0 1 3 -2 h9 z"/></g>
+        <text x="124" y="62" fill="#9aa89d" font-size="10" font-weight="600" text-anchor="middle">Learn</text>
+
+        <!-- Camera -->
+        <circle cx="195" cy="28" r="30" fill="url(#sprout)" filter="url(#camShadow)"/>
+        <circle cx="195" cy="28" r="30" fill="#ffffff" opacity="0.08"/>
+        <g transform="translate(195,28)" stroke="#ffffff" stroke-width="2.4" fill="none">
+          <rect x="-13" y="-9" width="26" height="19" rx="5"/>
+          <circle cx="0" cy="1" r="6"/>
+          <rect x="-6" y="-13" width="9" height="5" rx="2" fill="#ffffff" stroke="none"/>
+        </g>
+
+        <!-- Ranks (ACTIVE) -->
+        <circle cx="271" cy="34" r="26" fill="url(#tabGlow)"/>
+        <g transform="translate(258,22)" stroke="#1f9d52" stroke-width="2.2" fill="none">
+          <rect x="0" y="12" width="7" height="12" rx="1.5"/>
+          <rect x="9" y="4" width="7" height="20" rx="1.5"/>
+          <rect x="18" y="16" width="7" height="8" rx="1.5"/>
+        </g>
+        <text x="271" y="62" fill="#1f9d52" font-size="10" font-weight="700" text-anchor="middle">Ranks</text>
+
+        <!-- Profile -->
+        <g transform="translate(338,22)" stroke="#9aa89d" stroke-width="2" fill="none">
+          <circle cx="11" cy="8" r="6"/>
+          <path d="M0 24 a11 11 0 0 1 22 0"/>
+        </g>
+        <text x="349" y="62" fill="#9aa89d" font-size="10" font-weight="600" text-anchor="middle">Profile</text>
+      </g>
+
+      <rect x="125" y="833" width="140" height="5" rx="2.5" fill="#16331f" opacity="0.35"/>
+    </g>
+  </g>
+</svg>
