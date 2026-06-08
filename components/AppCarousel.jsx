@@ -44,13 +44,12 @@ export default function AppCarousel() {
 
         <div style={{ display: "flex", gap: 24, justifyContent: "center" }}>
           {visible.map((src) => (
-            <div key={src} style={phoneFrame}>
-              <img
-                src={src}
-                alt="Sprout app screen"
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-            </div>
+            <img
+              key={src}
+              src={src}
+              alt="Sprout app screen"
+              style={{ width: 300, height: "auto", display: "block", flexShrink: 0 }}
+            />
           ))}
         </div>
 
@@ -79,17 +78,6 @@ export default function AppCarousel() {
     </div>
   );
 }
-
-const phoneFrame = {
-  width: 280,
-  aspectRatio: "9 / 19.5",
-  borderRadius: 44,
-  overflow: "hidden",
-  background: "#000",
-  border: "10px solid #000",
-  boxShadow: "0 30px 60px rgba(0,0,0,0.18)",
-  flexShrink: 0,
-};
 
 const arrowStyle = {
   width: 56,
