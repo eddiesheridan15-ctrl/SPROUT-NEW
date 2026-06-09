@@ -28,7 +28,7 @@
     </linearGradient>
   </defs>
 
-  <rect width="520" height="1040" fill="#f7f6f1"/>
+  <rect width="520" height="1040" fill="none"/>
   <rect x="51" y="62" width="418" height="875" rx="62" fill="#1c1c1e" filter="url(#deviceShadow)"/>
   <rect x="54" y="65" width="412" height="869" rx="59" fill="none" stroke="#3a3a3c" stroke-width="2"/>
   <rect x="61" y="72" width="398" height="855" rx="48" fill="#000000"/>
