@@ -9,7 +9,6 @@ export default function Earth() {
     let renderer, frameId, cleanupScroll, cleanupResize;
     let cancelled = false;
 
-    // Load three from CDN at runtime to keep the bundle light and avoid SSR issues.
     const script = document.createElement("script");
     script.src =
       "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js";
@@ -90,12 +89,20 @@ export default function Earth() {
       window.addEventListener("resize", resize);
       cleanupResize = () => window.removeEventListener("resize", resize);
 
+      // Progress is measured against the START of the "Built to be played"
+      // section. The globe must be completely gone before that headline can
+      // ever reach the viewport, so we fully fade it out by the time the
+      // built section is one viewport-height away from the top of the screen.
       let curY = 0;
       let targetY = 0;
       const onScroll = () => {
-        const howEl = document.getElementById("how");
-        const end = howEl ? howEl.offsetTop : window.innerHeight;
-        targetY = Math.min(1, window.scrollY / (end || 1));
+        const builtEl = document.getElementById("built");
+        // Distance at which the globe should be fully faded: a bit before the
+        // built section enters view.
+        const fadeEnd = builtEl
+          ? builtEl.offsetTop - window.innerHeight
+          : window.innerHeight;
+        targetY = Math.min(1, Math.max(0, window.scrollY / (fadeEnd || 1)));
       };
       window.addEventListener("scroll", onScroll);
       onScroll();
@@ -112,7 +119,9 @@ export default function Earth() {
         atmo.position.copy(sphere.position);
         atmo.scale.setScalar(s);
         sphere.rotation.x = curY * 0.4;
-        const op = curY < 0.78 ? 1 : Math.max(0, 1 - (curY - 0.78) / 0.22);
+        // Fade out fully by 65% of the way to the built section, so the globe
+        // is completely invisible well before that headline appears.
+        const op = curY < 0.5 ? 1 : Math.max(0, 1 - (curY - 0.5) / 0.15);
         sphere.material.transparent = true;
         sphere.material.opacity = op;
         atmo.material.opacity = op;

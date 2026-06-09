@@ -142,36 +142,56 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ paddingTop: 0 }}>
+      {/* BUILT TO BE PLAYED, leaf-vein diptych */}
+      <section id="built" className="built">
         <div className="container">
-          <h2 className="reveal" style={{ textAlign: "center", marginBottom: 8 }}>
-            Built to be played, not endured.
-          </h2>
-          <div className="cards stagger">
-            <div className="card">
-              <div className="n">01</div>
-              <h3>Compete</h3>
-              <p>
-                Department against department, or everyone for the top spot in
-                smaller teams. A live leaderboard keeps it loud all the way to
-                the finish.
+          <div className="frame reveal">
+            <div className="left">
+              <div className="bg" />
+              <div className="grade" />
+              <div className="grade2" />
+              <div>
+                <span className="tag">The mechanics</span>
+                <h2>Built to be played, not endured.</h2>
+              </div>
+              <p className="foot">
+                It looks and feels like an app your team actually wants to open,
+                not a chore they are told to finish.
               </p>
             </div>
-            <div className="card">
-              <div className="n">02</div>
-              <h3>Level up</h3>
-              <p>
-                Every action grows a personal score and unlocks new tiers. Small
-                wins early, real bragging rights by the end.
-              </p>
-            </div>
-            <div className="card">
-              <div className="n">03</div>
-              <h3>Learn as you go</h3>
-              <p>
-                A light weekly read shows the team easy, genuine ways to live a
-                little greener, with no lectures and nothing they have to buy.
-              </p>
+            <div className="right">
+              <div className="item">
+                <span className="num">01</span>
+                <div>
+                  <h3>Compete</h3>
+                  <p>
+                    Department against department, or everyone for the top spot
+                    in smaller teams. A live leaderboard keeps it loud all the
+                    way to the finish.
+                  </p>
+                </div>
+              </div>
+              <div className="item">
+                <span className="num">02</span>
+                <div>
+                  <h3>Level up</h3>
+                  <p>
+                    Every action grows a personal score and unlocks new tiers.
+                    Small wins early, real bragging rights by the end.
+                  </p>
+                </div>
+              </div>
+              <div className="item">
+                <span className="num">03</span>
+                <div>
+                  <h3>Learn as you go</h3>
+                  <p>
+                    A light weekly read shows the team easy, genuine ways to
+                    live a little greener, with no lectures and nothing they
+                    have to buy.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

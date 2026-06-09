@@ -71,13 +71,23 @@ h2{font-size:clamp(38px,6vw,84px);font-weight:800;letter-spacing:-.035em}
 
 #how{padding-top:170px}
 
-/* CARDS */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:64px}
-.card{background:var(--card);border:1px solid rgba(0,0,0,.05);border-radius:24px;padding:46px 38px;transition:transform .28s,box-shadow .28s}
-.card:hover{transform:translateY(-8px);box-shadow:0 26px 60px rgba(21,83,44,.12)}
-.card .n{font-family:var(--head);font-weight:700;color:var(--green);font-size:14px;letter-spacing:.12em;margin-bottom:24px}
-.card h3{font-size:30px;margin-bottom:14px}
-.card p{color:var(--muted);font-size:17px}
+/* ===== BUILT TO BE PLAYED, leaf diptych ===== */
+.built{padding-top:0}
+.frame{display:grid;grid-template-columns:1fr 1fr;border-radius:28px;overflow:hidden;box-shadow:0 30px 80px rgba(13,42,23,.18)}
+.frame .left{position:relative;color:#fff;padding:64px 54px;min-height:600px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.frame .left .bg{position:absolute;inset:0;background-image:url('/leaf.jpg');background-size:cover;background-position:center;z-index:0}
+.frame .left .grade{position:absolute;inset:0;z-index:1;background:linear-gradient(155deg,rgba(6,20,11,.88),rgba(9,38,21,.55) 50%,rgba(13,70,35,.22))}
+.frame .left .grade2{position:absolute;inset:0;z-index:1;background:radial-gradient(130% 90% at 18% 16%,transparent,rgba(5,16,10,.72))}
+.frame .left > *{position:relative;z-index:2}
+.frame .left .tag{font-family:var(--head);font-weight:700;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:#86e8ab}
+.frame .left h2{font-size:clamp(34px,3.6vw,56px);max-width:11ch;margin-top:20px;text-shadow:0 4px 26px rgba(0,0,0,.55)}
+.frame .left .foot{font-family:var(--head);font-size:13px;letter-spacing:.04em;color:#cfe9d8;max-width:32ch}
+.frame .right{background:var(--card);padding:30px 54px}
+.frame .item{padding:36px 0;border-bottom:1px solid rgba(0,0,0,.10);display:grid;grid-template-columns:54px 1fr;gap:8px;align-items:start}
+.frame .item:last-child{border-bottom:none}
+.frame .item .num{color:var(--green);font-weight:700;font-family:var(--head);font-size:15px;padding-top:6px}
+.frame .item h3{font-size:25px;margin-bottom:9px}
+.frame .item p{color:var(--muted);font-size:16px}
 
 /* IMPACT pull-quote */
 .pull{border-left:4px solid var(--green);padding-left:34px;margin-top:64px}
@@ -119,11 +129,11 @@ label.fl{display:block;font-family:var(--head);font-weight:600;margin-bottom:10p
 .consent input{margin-top:5px;width:18px;height:18px;flex-shrink:0;accent-color:var(--green)}
 .consent .sm{color:var(--muted);font-size:15px}
 
-/* CAROUSEL */
+/* CAROUSEL, floating phones (no slab) */
 .carousel-head{font-size:clamp(34px,4.5vw,60px);margin-bottom:46px}
-.car-wrap{display:flex;align-items:center;justify-content:center;gap:8px;position:relative}
-.car-track{display:flex;gap:26px;justify-content:center;overflow:hidden}
-.car-track img{width:300px;height:auto;display:block;flex-shrink:0;filter:drop-shadow(0 30px 60px rgba(0,0,0,.18))}
+.car-wrap{display:flex;align-items:center;justify-content:center;gap:18px;position:relative}
+.car-track{display:flex;gap:30px;justify-content:center;align-items:flex-start}
+.car-track img{width:300px;height:auto;display:block;flex-shrink:0;filter:drop-shadow(0 34px 60px rgba(13,42,23,.22))}
 .arrow{width:58px;height:58px;border-radius:50%;border:1px solid rgba(0,0,0,.12);background:#fff;font-size:26px;line-height:1;cursor:pointer;color:var(--green-deep);flex-shrink:0;transition:transform .2s,box-shadow .2s}
 .arrow:hover:not(:disabled){transform:scale(1.08);box-shadow:0 8px 22px rgba(0,0,0,.1)}
 .arrow:disabled{opacity:.3;cursor:default}
@@ -147,7 +157,8 @@ footer .tg{color:var(--muted);font-size:15px}
 @media(max-width:880px){
   .container,.nav-in{padding:0 22px}
   .nav-links a:not(.btn){display:none}
-  .cards{grid-template-columns:1fr}
+  .frame{grid-template-columns:1fr}
+  .frame .left{min-height:380px}
   .hero-foot{flex-direction:column;align-items:flex-start}
   .car-track img{width:230px}
   .callout{flex-direction:column}
