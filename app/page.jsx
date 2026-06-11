@@ -5,6 +5,7 @@ import AppCarousel from "../components/AppCarousel";
 import BookingForm from "../components/BookingForm";
 import LiveLeaderboard from "../components/LiveLeaderboard";
 import ShareCard from "../components/ShareCard";
+import ImpactEarth from "../components/ImpactEarth";
 
 const Mark = () => (
   <svg viewBox="0 0 100 100">
@@ -225,6 +226,7 @@ export default function Home() {
             that single choice turns out to be the most talked-about moment of
             the whole programme.
           </p>
+          <ImpactEarth />
           <div className="pull reveal">
             <p>
               The good is <span className="g">guaranteed.</span> Your team just
