@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import Earth from "../components/Earth";
 import AppCarousel from "../components/AppCarousel";
 import BookingForm from "../components/BookingForm";
+import LiveLeaderboard from "../components/LiveLeaderboard";
+import ShareCard from "../components/ShareCard";
 
 const Mark = () => (
   <svg viewBox="0 0 100 100">
@@ -139,6 +141,7 @@ export default function Home() {
             verified environmental project, and the winning team chooses where
             it goes. The good gets done either way. They just get to point it.
           </p>
+          <LiveLeaderboard />
         </div>
       </section>
 
@@ -197,6 +200,13 @@ export default function Home() {
         </div>
       </section>
 
+      <section style={{ paddingTop: 0 }}>
+        <div className="container">
+          <h2 className="carousel-head reveal">A look inside the app</h2>
+          <AppCarousel />
+        </div>
+      </section>
+
       <section id="impact">
         <div className="container">
           <div className="eyebrow reveal">
@@ -224,26 +234,20 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SHARE LOOP (film section returns here post-launch) */}
       <section style={{ paddingTop: 0 }}>
         <div className="container">
           <h2 className="reveal" style={{ maxWidth: "20ch" }}>
             You walk away with something worth sharing.
           </h2>
           <p className="lead-p reveal" style={{ marginBottom: 0 }}>
-            At the end of every programme we produce a short, beautifully made
-            film: your team, your impact, the project you funded. It is built to
-            be proud of and made to be posted. A culture moment your people
-            remember and a values story your company can actually show, not just
-            claim.
+            When the donation lands, your people do the telling. Real posts
+            from real employees: the team&apos;s win, the project it funded,
+            the company that made it happen. A culture moment your people
+            remember and a values story your company can actually show, not
+            just claim.
           </p>
-          <div className="film reveal">
-            <div className="play">
-              <svg viewBox="0 0 24 24" fill="#fff">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-            <span className="cap">An example film is in the works</span>
-          </div>
+          <ShareCard />
         </div>
       </section>
 
@@ -256,8 +260,8 @@ export default function Home() {
             Plenty of companies try to run something like this in-house, then
             quietly drop it when they realise the admin becomes someone&apos;s
             full-time job. That someone is us. We handle the setup, the platform,
-            the verification, the donation, and the film. You bring your team and
-            a date to start.
+            the verification, and the donation. You bring your team and a date to
+            start.
           </p>
           <div className="callout reveal">
             <span className="ic">
@@ -266,21 +270,13 @@ export default function Home() {
             <div>
               <h3>One simple app your team will actually want to open.</h3>
               <div className="tick">
-                <b>&#10003;</b> We handle setup, verification, the donation, and
-                the film.
+                <b>&#10003;</b> We handle setup, verification, and the donation.
               </div>
               <div className="tick">
-                <b>&#10003;</b> One point of contact, from kickoff to final film.
+                <b>&#10003;</b> One point of contact, from kickoff to wrap-up.
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section style={{ paddingTop: 0 }}>
-        <div className="container">
-          <h2 className="carousel-head reveal">A look inside the app</h2>
-          <AppCarousel />
         </div>
       </section>
 
