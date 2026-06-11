@@ -6,7 +6,7 @@ export default function Earth() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    let renderer, frameId, cleanupScroll, cleanupResize;
+    let renderer, frameId, cleanupScroll, cleanupResize, cleanupWake;
     let cancelled = false;
 
     const script = document.createElement("script");
@@ -108,8 +108,11 @@ export default function Earth() {
       onScroll();
       cleanupScroll = () => window.removeEventListener("scroll", onScroll);
 
+      // The loop runs only while the globe is visible. Once it has fully
+      // faded (behind the rising cream panel), we hide the canvas and stop
+      // rendering entirely, so it costs nothing for the rest of the page.
+      let running = true;
       const loop = () => {
-        frameId = requestAnimationFrame(loop);
         curY += (targetY - curY) * 0.07;
         sphere.rotation.y += 0.0024;
         sphere.position.x = 0.7 + Math.sin(curY * Math.PI * 1.2) * 0.5;
@@ -125,10 +128,31 @@ export default function Earth() {
         sphere.material.transparent = true;
         sphere.material.opacity = op;
         atmo.material.opacity = op;
-        canvas.style.opacity = op <= 0.02 ? 0 : 1;
+
+        if (op <= 0.02) {
+          // Fully faded: hide the canvas and stop the loop completely.
+          canvas.style.display = "none";
+          running = false;
+          frameId = null;
+          return; // no further frames requested
+        }
+
+        canvas.style.display = "";
+        canvas.style.opacity = 1;
         renderer.render(scene, cam);
+        frameId = requestAnimationFrame(loop);
       };
       loop();
+
+      // Wake the loop back up only when the user scrolls near the top again.
+      const wake = () => {
+        if (!running && !cancelled && window.scrollY < window.innerHeight) {
+          running = true;
+          loop();
+        }
+      };
+      window.addEventListener("scroll", wake, { passive: true });
+      cleanupWake = () => window.removeEventListener("scroll", wake);
     };
 
     document.body.appendChild(script);
@@ -137,6 +161,7 @@ export default function Earth() {
       cancelled = true;
       if (frameId) cancelAnimationFrame(frameId);
       if (cleanupScroll) cleanupScroll();
+      if (cleanupWake) cleanupWake();
       if (cleanupResize) cleanupResize();
       if (renderer) renderer.dispose();
       if (script.parentNode) script.parentNode.removeChild(script);
