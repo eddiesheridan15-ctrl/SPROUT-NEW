@@ -104,6 +104,8 @@ export default function ImpactEarth() {
         return {
           pin,
           halo,
+          // sphere rotation.y that brings this pin to face the camera
+          focusY: Math.atan2(-pos.x, pos.z),
           el: stage.querySelector('[data-pin="' + idx + '"]'),
         };
       });
@@ -119,6 +121,16 @@ export default function ImpactEarth() {
       window.addEventListener("resize", resize);
       cleanupResize = () => window.removeEventListener("resize", resize);
 
+      // Guided tour: hold on a pin, glide to the next, repeat.
+      const TRAVEL = 2.2;
+      const HOLD = 3.4;
+      let mode = "hold";
+      let active = 0;
+      let phaseT = 0;
+      let curRot = pinObjs[0].focusY;
+      let curZoom = 3.15;
+      sphere.rotation.y = curRot;
+
       const v = new THREE.Vector3();
       let t = 0;
       const loop = () => {
@@ -127,7 +139,24 @@ export default function ImpactEarth() {
           return;
         }
         t += 0.016;
-        sphere.rotation.y += 0.0016;
+        phaseT += 0.016;
+        if (mode === "travel" && phaseT > TRAVEL) {
+          mode = "hold";
+          phaseT = 0;
+        } else if (mode === "hold" && phaseT > HOLD) {
+          mode = "travel";
+          phaseT = 0;
+          active = (active + 1) % pinObjs.length;
+        }
+        const targetRot = pinObjs[active].focusY;
+        const targetZoom = mode === "hold" ? 3.15 : 4.4;
+        curRot += (targetRot - curRot) * 0.045;
+        curZoom += (targetZoom - curZoom) * 0.05;
+        sphere.rotation.y = curRot;
+        cam.position.z = curZoom;
+        pinObjs[active].pin.getWorldPosition(v);
+        cam.position.y += (v.y * 0.35 - cam.position.y) * 0.04;
+        cam.lookAt(0, 0, 0);
         pinObjs.forEach((p, i) => {
           p.halo.scale.setScalar(1 + Math.sin(t * 2 + i * 1.7) * 0.35);
           p.pin.getWorldPosition(v);
@@ -136,6 +165,7 @@ export default function ImpactEarth() {
           const x = (proj.x * 0.5 + 0.5) * stage.clientWidth;
           const y = (-proj.y * 0.5 + 0.5) * stage.clientHeight;
           if (p.el) {
+            p.el.classList.toggle("active", i === active);
             p.el.style.transform =
               "translate(" + x + "px," + y + "px) translate(-50%,-135%)";
             p.el.style.opacity = facing > 0.18 ? 1 : 0;
