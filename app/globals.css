@@ -228,3 +228,44 @@ footer .tg{color:var(--muted);font-size:15px}
   .ie-eyebrow{left:22px;top:24px;font-size:11px}
   .ie-cap{left:22px;bottom:22px;font-size:12px}
 }
+
+/* ===== HERO STAT TILES ===== */
+.hero-tiles{display:flex;gap:18px;margin-top:52px;flex-wrap:wrap;position:relative;z-index:3}
+.ht{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13);border-radius:18px;padding:18px 26px;backdrop-filter:blur(6px)}
+.ht b{display:block;font-family:var(--head);font-weight:800;font-size:23px;color:#fff;letter-spacing:-.01em}
+.ht span{font-family:var(--head);font-size:12px;letter-spacing:.05em;color:#9fb5a6}
+
+/* ===== NIGHT RACE (How It Works) ===== */
+.nr{max-width:860px;margin-top:64px;background:var(--dark);border-radius:28px;padding:38px 42px;position:relative;overflow:hidden;box-shadow:0 40px 100px rgba(13,42,23,.35)}
+.nr::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 100% at 15% 0%,rgba(43,180,95,.16),transparent 60%),repeating-linear-gradient(90deg,transparent 0 119px,rgba(255,255,255,.035) 119px 120px);pointer-events:none}
+.nr-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;position:relative}
+.nr-live{display:inline-flex;align-items:center;gap:10px;font-family:var(--head);font-weight:800;font-size:12px;letter-spacing:.3em;color:#7df0a8;text-transform:uppercase}
+.nr-live i{width:9px;height:9px;border-radius:50%;background:#3ef07f;box-shadow:0 0 14px #3ef07f;animation:nrPulse 1.4s infinite}
+@keyframes nrPulse{50%{opacity:.4}}
+.nr-week{font-family:var(--head);font-size:12px;letter-spacing:.12em;color:#7fa98c}
+.nr-lane{position:relative;height:66px;border-bottom:1px dashed rgba(255,255,255,.10)}
+.nr-lane:last-child{border-bottom:none}
+.nr-finish{position:absolute;right:0;top:10px;bottom:10px;width:9px;background:repeating-conic-gradient(#0c1a10 0% 25%,#9fd9b6 0% 50%) 0 0/9px 9px;border-radius:3px;box-shadow:0 0 16px rgba(125,240,168,.3)}
+.nr-trail{position:absolute;left:8%;top:50%;height:7px;transform:translateY(-50%);border-radius:4px;background:linear-gradient(90deg,transparent,rgba(62,240,127,.6));box-shadow:0 0 14px rgba(62,240,127,.3);transition:width .7s cubic-bezier(.22,1,.36,1)}
+.nr-run{position:absolute;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:9px;transition:left .7s cubic-bezier(.22,1,.36,1);white-space:nowrap;z-index:2}
+.nr-av{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-weight:800;font-size:16px;color:#fff;border:3px solid #0c1a10;box-shadow:0 0 0 2px rgba(125,240,168,.5),0 0 22px rgba(62,240,127,.3)}
+.nr-tag{font-family:var(--head);font-weight:700;font-size:12.5px;background:rgba(255,255,255,.08);color:#dff2e5;padding:4px 11px;border-radius:999px;backdrop-filter:blur(4px)}
+.nr-tag b{color:#7df0a8;font-variant-numeric:tabular-nums}
+.nr-chip{position:absolute;right:-6px;top:-26px;font-family:var(--head);font-weight:800;font-size:12px;color:#fff;background:var(--green-mid);padding:3px 10px;border-radius:999px;animation:nrRise 1.3s ease-out forwards;pointer-events:none}
+@keyframes nrRise{0%{opacity:0;transform:translateY(8px) scale(.85)}15%{opacity:1;transform:translateY(0) scale(1.08)}100%{opacity:0;transform:translateY(-28px) scale(1)}}
+
+/* ===== VERIFICATION BAND ===== */
+.verify{background:radial-gradient(110% 120% at 50% 0%,#102a18 0%,#0c1a10 60%,#0a160d 100%);color:#eaf3ec}
+.v-eyebrow{font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:#3ef07f;margin-bottom:24px}
+.verify h2{color:#fff;font-size:clamp(34px,5vw,68px);max-width:18ch}
+.v-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:58px}
+.v-tile{background:rgba(255,255,255,.045);border:1px solid rgba(62,240,127,.22);border-radius:20px;padding:28px 26px;backdrop-filter:blur(4px)}
+.v-tile h3{font-family:var(--head);font-weight:700;font-size:19px;color:#fff;margin-bottom:12px}
+.v-tile p{font-size:14.5px;line-height:1.6;color:#9fc7ab}
+@media(max-width:880px){
+  .v-grid{grid-template-columns:1fr 1fr}
+  .nr{padding:26px 18px}
+  .nr-tag{display:none}
+  .hero-tiles{gap:12px}
+  .ht{padding:14px 18px}
+}

@@ -1,18 +1,17 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-const START = [
-  { id: "mkt", name: "Leaf It Up to Marketing", score: 8420 },
-  { id: "sal", name: "Sales Squadron", score: 8180 },
-  { id: "fin", name: "Finance Forest", score: 7890 },
-  { id: "ops", name: "Ocean's Eleven", score: 7540 },
+const TEAMS = [
+  { id: "mkt", name: "Marketing", initial: "M", color: "#1f9d52", target: 8420 },
+  { id: "sal", name: "Sales", initial: "S", color: "#b9851c", target: 8180 },
+  { id: "fin", name: "Finance", initial: "F", color: "#3f6fa0", target: 7890 },
+  { id: "ops", name: "Ops", initial: "O", color: "#a4652f", target: 7540 },
 ];
-
-const ROW_H = 84;
+const FLOOR = 7000;
 
 export default function LiveLeaderboard() {
   const wrapRef = useRef(null);
-  const [teams, setTeams] = useState(START.map((t) => ({ ...t, score: 0 })));
+  const [scores, setScores] = useState(TEAMS.map(() => 0));
   const [chip, setChip] = useState(null);
   const startedRef = useRef(false);
   const runningRef = useRef(false);
@@ -20,32 +19,26 @@ export default function LiveLeaderboard() {
   useEffect(() => {
     const el = wrapRef.current;
     if (!el) return;
-    let tickTimer = null;
+    let timer = null;
     let raf = null;
 
     const beginTicks = () => {
-      tickTimer = setInterval(() => {
+      timer = setInterval(() => {
         if (!runningRef.current) return;
-        setTeams((prev) => {
-          const i = Math.floor(Math.random() * prev.length);
-          const amount = [30, 40, 50][Math.floor(Math.random() * 3)];
-          setChip({ id: prev[i].id, amount, key: Date.now() });
-          return prev.map((t, j) =>
-            j === i ? { ...t, score: t.score + amount } : t
-          );
-        });
-      }, 2400);
+        const i = Math.floor(Math.random() * TEAMS.length);
+        const amount = [30, 40, 50][Math.floor(Math.random() * 3)];
+        setChip({ i, amount, key: Date.now() });
+        setScores((prev) => prev.map((s, j) => (j === i ? s + amount : s)));
+      }, 2300);
     };
 
-    const startCountUp = () => {
+    const countUp = () => {
       const t0 = performance.now();
       const dur = 1800;
       const ease = (x) => 1 - Math.pow(1 - x, 3);
       const step = (now) => {
         const p = Math.min(1, (now - t0) / dur);
-        setTeams(
-          START.map((t) => ({ ...t, score: Math.round(t.score * ease(p)) }))
-        );
+        setScores(TEAMS.map((t) => Math.round(t.target * ease(p))));
         if (p < 1) raf = requestAnimationFrame(step);
         else beginTicks();
       };
@@ -58,59 +51,57 @@ export default function LiveLeaderboard() {
           runningRef.current = e.isIntersecting;
           if (e.isIntersecting && !startedRef.current) {
             startedRef.current = true;
-            startCountUp();
+            countUp();
           }
         }),
-      { threshold: 0.35 }
+      { threshold: 0.3 }
     );
     io.observe(el);
 
     return () => {
       io.disconnect();
-      if (tickTimer) clearInterval(tickTimer);
+      if (timer) clearInterval(timer);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 
-  const max = Math.max(...teams.map((t) => t.score), 1);
-  const ranked = [...teams].sort((a, b) => b.score - a.score);
-  const rankOf = (id) => ranked.findIndex((t) => t.id === id);
+  const max = Math.max(...scores, FLOOR + 1);
 
   return (
-    <div className="lb reveal" ref={wrapRef}>
-      <div className="lb-head">
-        <span className="lb-live">
-          <span className="lb-dot" />
-          Live leaderboard
+    <div className="nr reveal" ref={wrapRef}>
+      <div className="nr-head">
+        <span className="nr-live">
+          <i />
+          Live race
         </span>
-        <span className="lb-week">Week 3 of 4</span>
+        <span className="nr-week">WEEK 3 OF 4</span>
       </div>
-      <div className="lb-rows" style={{ height: START.length * ROW_H }}>
-        {teams.map((t) => {
-          const r = rankOf(t.id);
-          return (
+      {TEAMS.map((t, i) => {
+        const pct = Math.max(0, (scores[i] - FLOOR) / (max + 400 - FLOOR));
+        const left = 8 + pct * 76;
+        return (
+          <div className="nr-lane" key={t.id}>
+            <div className="nr-finish" />
             <div
-              key={t.id}
-              className="lb-row"
-              style={{ transform: `translateY(${r * ROW_H}px)` }}
-            >
-              <span className="lb-rank">{r + 1}</span>
-              <div className="lb-mid">
-                <div className="lb-name">{t.name}</div>
-                <div className="lb-bar">
-                  <span style={{ width: `${(t.score / max) * 100}%` }} />
-                </div>
-              </div>
-              <span className="lb-score">{t.score.toLocaleString()}</span>
-              {chip && chip.id === t.id && (
-                <span key={chip.key} className="lb-chip">
+              className="nr-trail"
+              style={{ width: Math.max(0, left - 8) + "%" }}
+            />
+            <div className="nr-run" style={{ left: left + "%" }}>
+              <span className="nr-av" style={{ background: t.color }}>
+                {t.initial}
+              </span>
+              <span className="nr-tag">
+                {t.name} &middot; <b>{scores[i].toLocaleString()}</b>
+              </span>
+              {chip && chip.i === i && (
+                <span key={chip.key} className="nr-chip">
                   +{chip.amount} pts
                 </span>
               )}
             </div>
-          );
-        })}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

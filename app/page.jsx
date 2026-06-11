@@ -117,6 +117,11 @@ export default function Home() {
               No setup work on your side. We run the whole thing.
             </div>
           </div>
+          <div className="hero-tiles reveal">
+            <div className="ht"><b>4 weeks</b><span>one self-contained programme</span></div>
+            <div className="ht"><b>1 donation</b><span>guaranteed from day one</span></div>
+            <div className="ht"><b>3 causes</b><span>the winning team chooses</span></div>
+          </div>
         </div>
         <div className="scroll-cue">
           <span className="line" />
@@ -232,6 +237,31 @@ export default function Home() {
               The good is <span className="g">guaranteed.</span> Your team just
               gets to choose its shape.
             </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="verify">
+        <div className="container">
+          <div className="v-eyebrow reveal">[&nbsp;&nbsp;How we keep it honest&nbsp;&nbsp;]</div>
+          <h2 className="reveal">If we can&apos;t verify it, we don&apos;t fund it.</h2>
+          <div className="v-grid reveal">
+            <div className="v-tile">
+              <h3>Multi-year monitoring</h3>
+              <p>Every project we fund is tracked for years, not months. Planting day is the start, not the photo op.</p>
+            </div>
+            <div className="v-tile">
+              <h3>Published standards</h3>
+              <p>Results are certified against recognised frameworks, so the numbers stand up outside this website.</p>
+            </div>
+            <div className="v-tile">
+              <h3>Locked in at signing</h3>
+              <p>The donation is committed before the first point is scored. The competition decides where, never whether.</p>
+            </div>
+            <div className="v-tile">
+              <h3>Vetted by us</h3>
+              <p>Registered charities and non-profits we have checked ourselves, not logos licensed for a landing page.</p>
+            </div>
           </div>
         </div>
       </section>
