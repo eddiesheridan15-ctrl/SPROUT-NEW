@@ -16,6 +16,7 @@ const SCREENS = [
 
 export default function AppCarousel() {
   const [start, setStart] = useState(0);
+  const [tilt, setTilt] = useState({ i: null, x: 0, y: 0 });
   const perView = 3;
   const maxStart = Math.max(0, SCREENS.length - perView);
 
@@ -26,10 +27,6 @@ export default function AppCarousel() {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h2 style={{ fontSize: 44, textAlign: "left", marginBottom: 48 }}>
-        A look inside the app
-      </h2>
-
       <div
         style={{
           display: "flex",
@@ -43,15 +40,40 @@ export default function AppCarousel() {
           ‹
         </button>
 
-        <div style={{ display: "flex", gap: 24, justifyContent: "center" }}>
-          {visible.map((src) => (
-            <img
-              key={src}
-              src={src}
-              alt="Sprout app screen"
-              style={{ width: 300, height: "auto", display: "block", flexShrink: 0 }}
-            />
-          ))}
+        <div style={{ display: "flex", gap: 24, justifyContent: "center", alignItems: "center" }}>
+          {visible.map((src, i) => {
+            const isCenter = i === 1;
+            const active = tilt.i === i;
+            return (
+              <img
+                key={src}
+                src={src}
+                alt="Sprout app screen"
+                onMouseMove={(e) => {
+                  const r = e.currentTarget.getBoundingClientRect();
+                  setTilt({
+                    i,
+                    x: (e.clientX - r.left) / r.width - 0.5,
+                    y: (e.clientY - r.top) / r.height - 0.5,
+                  });
+                }}
+                onMouseLeave={() => setTilt({ i: null, x: 0, y: 0 })}
+                style={{
+                  width: 300,
+                  height: "auto",
+                  display: "block",
+                  flexShrink: 0,
+                  transform: `perspective(900px) scale(${isCenter ? 1 : 0.88}) rotateY(${
+                    active ? (tilt.x * 10).toFixed(2) : 0
+                  }deg) rotateX(${active ? (-tilt.y * 8).toFixed(2) : 0}deg)`,
+                  transition: active ? "transform 0.08s ease-out" : "transform 0.5s ease",
+                  willChange: "transform",
+                  zIndex: isCenter ? 2 : 1,
+                  filter: isCenter ? "none" : "saturate(0.92) brightness(0.98)",
+                }}
+              />
+            );
+          })}
         </div>
 
         <button onClick={next} aria-label="Next" style={arrowStyle} disabled={start === maxStart}>
