@@ -26,7 +26,6 @@
     <clipPath id="screenClip"><rect x="65" y="76" width="390" height="847" rx="42"/></clipPath>
   </defs>
 
-  <rect width="520" height="1040" fill="none"/>
   <rect x="51" y="62" width="418" height="875" rx="62" fill="#1c1c1e" filter="url(#deviceShadow)"/>
   <rect x="54" y="65" width="412" height="869" rx="59" fill="none" stroke="#3a3a3c" stroke-width="2"/>
   <rect x="61" y="72" width="398" height="855" rx="48" fill="#000000"/>
@@ -58,9 +57,10 @@
       <!-- Team / Leaderboard toggle -->
       <g transform="translate(20,116)">
         <rect width="350" height="40" rx="20" fill="#e6ece7"/>
-        <rect x="3" y="3" width="172" height="34" rx="17" fill="url(#sprout)"/>
-        <text x="89" y="25" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">My Team</text>
-        <text x="262" y="25" fill="#7a8a7e" font-size="13" font-weight="600" text-anchor="middle">Leaderboard</text>
+        <rect x="3" y="3" width="114" height="34" rx="17" fill="url(#sprout)"/>
+        <text x="60" y="25" fill="#ffffff" font-size="12" font-weight="700" text-anchor="middle">My Team</text>
+        <text x="175" y="25" fill="#7a8a7e" font-size="12" font-weight="600" text-anchor="middle">Leaderboard</text>
+        <text x="290" y="25" fill="#7a8a7e" font-size="12" font-weight="600" text-anchor="middle">Impact</text>
       </g>
 
       <!-- HERO team card -->
