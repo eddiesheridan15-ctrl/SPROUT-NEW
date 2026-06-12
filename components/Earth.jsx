@@ -46,6 +46,11 @@ export default function Earth() {
         })
       );
       sphere.rotation.z = 0.41;
+      // Opening face of the globe. 0 shows the empty Pacific/Atlantic; ~1.9
+      // brings the land-rich Africa/Europe face to the camera. Nudge this one
+      // number to re-aim the opening view (radians; +/- spins it round).
+      const OPENING_ROTATION = 1.9;
+      sphere.rotation.y = OPENING_ROTATION;
       scene.add(sphere);
 
       const atmMat = new THREE.ShaderMaterial({
