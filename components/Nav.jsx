@@ -10,14 +10,13 @@ export default function Nav() {
     const sections = Array.from(document.querySelectorAll('[data-nav="dark"]'));
     if (!sections.length) return;
 
-    // The nav is "dark" whenever a dark section straddles the line just
-    // below the nav bar (i.e. that section is what sits behind the bar).
+    // The nav is "dark" whenever a dark section overlaps the nav bar's band
+    // (top of viewport down to the bar's bottom edge).
     const update = () => {
-      const line = NAV_H * 0.5;
       let onDark = false;
       for (const el of sections) {
         const r = el.getBoundingClientRect();
-        if (r.top <= line && r.bottom >= line) {
+        if (r.top <= NAV_H && r.bottom >= 0) {
           onDark = true;
           break;
         }

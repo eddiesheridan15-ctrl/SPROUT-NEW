@@ -213,7 +213,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="impact">
+      <section id="impact" data-nav="dark">
         <div className="container">
           <div className="eyebrow reveal">
             <span className="num">02</span>

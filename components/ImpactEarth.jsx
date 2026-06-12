@@ -72,7 +72,7 @@ export default function ImpactEarth() {
 
       const scene = new THREE.Scene();
       const cam = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
-      cam.position.z = 4.6;
+      cam.position.set(0, 0, 4.6);
 
       const R = 1.5;
       const sphere = new THREE.Mesh(
@@ -83,7 +83,6 @@ export default function ImpactEarth() {
           specular: 0x224433,
         })
       );
-      sphere.rotation.z = 0.3;
       scene.add(sphere);
 
       const atmMat = new THREE.ShaderMaterial({
@@ -145,7 +144,7 @@ export default function ImpactEarth() {
         return {
           pin,
           halo,
-          focusY: Math.atan2(-pos.x, pos.z),
+          dir: pos.clone().normalize(),
           el: stage.querySelector('[data-pin="' + idx + '"]'),
         };
       });
@@ -166,10 +165,18 @@ export default function ImpactEarth() {
       const HOLD = 3.4;
       const MANUAL_HOLD = 9;
       const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
-      let curRot = pinObjs[0].focusY;
-      let curZoom = 2.85;
-      const lookTarget = { y: 0 };
-      sphere.rotation.y = curRot;
+      // Camera orbits to sit directly outside the active pin, looking at centre.
+      // This centres any pin regardless of latitude (no Euler skew).
+      // Start the camera aimed at central Asia (lon ~80, lat ~30) so the opening
+      // frame shows land, then it eases round to the first pin and the tour begins.
+      const asiaPhi = ((90 - 30) * Math.PI) / 180;
+      const asiaTheta = ((80 + 180) * Math.PI) / 180;
+      const camDir = new THREE.Vector3(
+        -Math.sin(asiaPhi) * Math.cos(asiaTheta),
+        Math.cos(asiaPhi),
+        Math.sin(asiaPhi) * Math.sin(asiaTheta)
+      ).normalize();
+      let curZoom = 4.6;
 
       controlRef.current = (i) => {
         if (i === tour.active) {
@@ -203,16 +210,14 @@ export default function ImpactEarth() {
           tour.active = (tour.active + 1) % pinObjs.length;
           setUiActive(tour.active);
         }
-        const targetRot = pinObjs[tour.active].focusY;
+        const targetDir = pinObjs[tour.active].dir;
         const targetZoom = tour.mode === "hold" ? 2.85 : 4.6;
-        curRot += (targetRot - curRot) * 0.045;
+        // Ease the camera direction toward the active pin (normalized lerp ~ slerp for small steps).
+        camDir.lerp(targetDir, 0.05).normalize();
         curZoom += (targetZoom - curZoom) * 0.05;
-        sphere.rotation.y = curRot;
-        cam.position.z = curZoom;
-        pinObjs[tour.active].pin.getWorldPosition(v);
-        cam.position.y += (v.y * 0.62 - cam.position.y) * 0.04;
-        lookTarget.y += (v.y * 0.5 - lookTarget.y) * 0.04;
-        cam.lookAt(0, lookTarget.y, 0);
+        cam.position.copy(camDir).multiplyScalar(curZoom);
+        cam.up.set(0, 1, 0);
+        cam.lookAt(0, 0, 0);
 
         pinObjs.forEach((p, i) => {
           p.halo.scale.setScalar(1 + Math.sin(t * 2 + i * 1.7) * 0.35);
