@@ -164,18 +164,19 @@ export default function ImpactEarth() {
       const TRAVEL = 2.9;
       const HOLD = 3.4;
       const MANUAL_HOLD = 9;
-      const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
+      const tour = { mode: "intro", active: 0, phaseT: 0, dwell: HOLD };
       // Camera orbits to sit directly outside the active pin, looking at centre.
       // This centres any pin regardless of latitude (no Euler skew).
-      // Start the camera aimed at central Asia (lon ~80, lat ~30) so the opening
-      // frame shows land, then it eases round to the first pin and the tour begins.
+      // Opening view: aimed at central Asia (lon ~80, lat ~30) so the globe
+      // opens on land, holds briefly, then journeys to the pins.
       const asiaPhi = ((90 - 30) * Math.PI) / 180;
       const asiaTheta = ((80 + 180) * Math.PI) / 180;
-      const camDir = new THREE.Vector3(
+      const asiaDir = new THREE.Vector3(
         -Math.sin(asiaPhi) * Math.cos(asiaTheta),
         Math.cos(asiaPhi),
         Math.sin(asiaPhi) * Math.sin(asiaTheta)
       ).normalize();
+      const camDir = asiaDir.clone();
       let curZoom = 4.6;
 
       controlRef.current = (i) => {
@@ -200,7 +201,13 @@ export default function ImpactEarth() {
         }
         t += 0.016;
         tour.phaseT += 0.016;
-        if (tour.mode === "travel" && tour.phaseT > TRAVEL) {
+        const INTRO = 2.6;
+        if (tour.mode === "intro" && tour.phaseT > INTRO) {
+          tour.mode = "travel";
+          tour.phaseT = 0;
+          tour.active = 0;
+          setUiActive(0);
+        } else if (tour.mode === "travel" && tour.phaseT > TRAVEL) {
           tour.mode = "hold";
           tour.phaseT = 0;
         } else if (tour.mode === "hold" && tour.phaseT > tour.dwell) {
@@ -210,9 +217,9 @@ export default function ImpactEarth() {
           tour.active = (tour.active + 1) % pinObjs.length;
           setUiActive(tour.active);
         }
-        const targetDir = pinObjs[tour.active].dir;
+        const targetDir = tour.mode === "intro" ? asiaDir : pinObjs[tour.active].dir;
         const targetZoom = tour.mode === "hold" ? 2.85 : 4.6;
-        // Ease the camera direction toward the active pin (normalized lerp ~ slerp for small steps).
+        // Ease the camera direction toward the target (normalized lerp ~ slerp for small steps).
         camDir.lerp(targetDir, 0.05).normalize();
         curZoom += (targetZoom - curZoom) * 0.05;
         cam.position.copy(camDir).multiplyScalar(curZoom);
