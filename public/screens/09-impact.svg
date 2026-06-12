@@ -72,7 +72,7 @@
       <g transform="translate(40,246)">
         <circle cx="13" cy="13" r="13" fill="#ffffff" opacity="0.18"/>
         <g transform="translate(13,13)"><path d="M0 -7 l5 9 h-10 z M0 -3 l5 9 h-10 z" fill="#ffffff"/></g>
-        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">1,600 trees planted</text>
+        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">9,500 trees planted</text>
       </g>
       <!-- prize row 2: water -->
       <g transform="translate(40,278)">

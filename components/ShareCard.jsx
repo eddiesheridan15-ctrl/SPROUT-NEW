@@ -28,7 +28,7 @@ export default function ShareCard() {
         <div className="li-body">
           <p>
             Four weeks ago I told our team at GreenCo we were starting a
-            competition. Today we donated <b>1,600 trees</b> with the help of{" "}
+            competition. Today we donated <b>9,500 trees</b> with the help of{" "}
             <b>Sprout</b>. Half of them rolled their eyes at the start. Nobody is
             rolling them now. &#128580;
           </p>
@@ -41,7 +41,7 @@ export default function ShareCard() {
                 sustainability&rdquo; line. An actual number, an actual project.
               </p>
               <p>
-                And it landed. Those 1,600 trees are planted and monitored for
+                And it landed. Those 9,500 trees are planted and monitored for
                 years, not a logo on a slide. &#127793;
               </p>
               <p>
