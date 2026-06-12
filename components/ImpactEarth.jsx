@@ -1,15 +1,50 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const SPOTS = [
-  { lat: -6.2, lon: 35.0, label: "Reforestation \u00b7 East Africa" },
-  { lat: -18.6, lon: 27.0, label: "Wildlife \u00b7 Southern Africa" },
-  { lat: -2.0, lon: 117.0, label: "River cleanup \u00b7 Southeast Asia" },
+  {
+    lat: -6.2,
+    lon: 35.0,
+    label: "Reforestation \u00b7 East Africa",
+    pill: "Land",
+    title: "Land \u00b7 Reforestation",
+    points: [
+      "Native seedlings planted and protected",
+      "Degraded land brought back to life",
+      "Local growers paid to care for it",
+    ],
+  },
+  {
+    lat: -18.6,
+    lon: 27.0,
+    label: "Wildlife \u00b7 Southern Africa",
+    pill: "Wildlife",
+    title: "Wildlife \u00b7 Conservation",
+    points: [
+      "Ranger patrols kept in the field",
+      "Snares found and removed",
+      "Habitats protected year round",
+    ],
+  },
+  {
+    lat: -2.0,
+    lon: 117.0,
+    label: "River cleanup \u00b7 Southeast Asia",
+    pill: "Water",
+    title: "Water \u00b7 River cleanup",
+    points: [
+      "River plastic intercepted at source",
+      "Every tonne weighed and reported",
+      "Waterways restored for communities",
+    ],
+  },
 ];
 
 export default function ImpactEarth() {
   const stageRef = useRef(null);
   const canvasRef = useRef(null);
+  const controlRef = useRef(null);
+  const [uiActive, setUiActive] = useState(0);
 
   useEffect(() => {
     let renderer, frameId, io, cleanupResize;
@@ -104,7 +139,6 @@ export default function ImpactEarth() {
         return {
           pin,
           halo,
-          // sphere rotation.y that brings this pin to face the camera
           focusY: Math.atan2(-pos.x, pos.z),
           el: stage.querySelector('[data-pin="' + idx + '"]'),
         };
@@ -121,15 +155,27 @@ export default function ImpactEarth() {
       window.addEventListener("resize", resize);
       cleanupResize = () => window.removeEventListener("resize", resize);
 
-      // Guided tour: hold on a pin, glide to the next, repeat.
+      // Guided tour with manual override from the cause pills.
       const TRAVEL = 2.2;
       const HOLD = 3.4;
-      let mode = "hold";
-      let active = 0;
-      let phaseT = 0;
+      const MANUAL_HOLD = 9;
+      const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
       let curRot = pinObjs[0].focusY;
       let curZoom = 3.15;
       sphere.rotation.y = curRot;
+
+      controlRef.current = (i) => {
+        if (i === tour.active) {
+          tour.dwell = MANUAL_HOLD;
+          tour.phaseT = 0;
+          return;
+        }
+        tour.active = i;
+        tour.mode = "travel";
+        tour.phaseT = 0;
+        tour.dwell = MANUAL_HOLD;
+        setUiActive(i);
+      };
 
       const v = new THREE.Vector3();
       let t = 0;
@@ -139,24 +185,27 @@ export default function ImpactEarth() {
           return;
         }
         t += 0.016;
-        phaseT += 0.016;
-        if (mode === "travel" && phaseT > TRAVEL) {
-          mode = "hold";
-          phaseT = 0;
-        } else if (mode === "hold" && phaseT > HOLD) {
-          mode = "travel";
-          phaseT = 0;
-          active = (active + 1) % pinObjs.length;
+        tour.phaseT += 0.016;
+        if (tour.mode === "travel" && tour.phaseT > TRAVEL) {
+          tour.mode = "hold";
+          tour.phaseT = 0;
+        } else if (tour.mode === "hold" && tour.phaseT > tour.dwell) {
+          tour.mode = "travel";
+          tour.phaseT = 0;
+          tour.dwell = HOLD;
+          tour.active = (tour.active + 1) % pinObjs.length;
+          setUiActive(tour.active);
         }
-        const targetRot = pinObjs[active].focusY;
-        const targetZoom = mode === "hold" ? 3.15 : 4.4;
+        const targetRot = pinObjs[tour.active].focusY;
+        const targetZoom = tour.mode === "hold" ? 3.15 : 4.4;
         curRot += (targetRot - curRot) * 0.045;
         curZoom += (targetZoom - curZoom) * 0.05;
         sphere.rotation.y = curRot;
         cam.position.z = curZoom;
-        pinObjs[active].pin.getWorldPosition(v);
+        pinObjs[tour.active].pin.getWorldPosition(v);
         cam.position.y += (v.y * 0.35 - cam.position.y) * 0.04;
         cam.lookAt(0, 0, 0);
+
         pinObjs.forEach((p, i) => {
           p.halo.scale.setScalar(1 + Math.sin(t * 2 + i * 1.7) * 0.35);
           p.pin.getWorldPosition(v);
@@ -165,7 +214,7 @@ export default function ImpactEarth() {
           const x = (proj.x * 0.5 + 0.5) * stage.clientWidth;
           const y = (-proj.y * 0.5 + 0.5) * stage.clientHeight;
           if (p.el) {
-            p.el.classList.toggle("active", i === active);
+            p.el.classList.toggle("active", i === tour.active);
             p.el.style.transform =
               "translate(" + x + "px," + y + "px) translate(-50%,-135%)";
             p.el.style.opacity = facing > 0.18 ? 1 : 0;
@@ -217,8 +266,26 @@ export default function ImpactEarth() {
           {s.label}
         </span>
       ))}
-      <div className="ie-cap">
-        Three causes. Real places. The winning team picks one.
+      <div className="ie-info" key={uiActive}>
+        <h4>{SPOTS[uiActive].title}</h4>
+        {SPOTS[uiActive].points.map((p) => (
+          <div className="ie-li" key={p}>
+            <b>&#10003;</b>
+            {p}
+          </div>
+        ))}
+        <div className="ie-note">The winning team sends the donation here.</div>
+      </div>
+      <div className="ie-pills">
+        {SPOTS.map((s, i) => (
+          <button
+            key={s.pill}
+            className={"ie-pillbtn" + (i === uiActive ? " on" : "")}
+            onClick={() => controlRef.current && controlRef.current(i)}
+          >
+            {s.pill}
+          </button>
+        ))}
       </div>
     </div>
   );
