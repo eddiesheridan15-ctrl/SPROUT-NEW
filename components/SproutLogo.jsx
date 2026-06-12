@@ -1,6 +1,7 @@
-export default function SproutLogo({ size = 40, showWordmark = true, mono = false }) {
+export default function SproutLogo({ size = 40, showWordmark = true, mono = false, onDark = false }) {
   const green = mono ? "currentColor" : "#1f9d52";
   const darkGreen = mono ? "currentColor" : "#15532c";
+  const wordColor = onDark ? "#ffffff" : darkGreen;
   return (
     <span style={{ display: "inline-flex", alignItems: "center", gap: 12 }}>
       <svg
@@ -41,7 +42,7 @@ export default function SproutLogo({ size = 40, showWordmark = true, mono = fals
               fontWeight: 700,
               fontSize: size * 0.62,
               letterSpacing: "0.04em",
-              color: darkGreen,
+              color: wordColor,
             }}
           >
             SPROUT
@@ -50,7 +51,7 @@ export default function SproutLogo({ size = 40, showWordmark = true, mono = fals
             style={{
               fontFamily: "var(--font-body)",
               fontSize: size * 0.18,
-              color: darkGreen,
+              color: wordColor,
               opacity: 0.8,
               marginTop: 3,
             }}

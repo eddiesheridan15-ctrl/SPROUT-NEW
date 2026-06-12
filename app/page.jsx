@@ -86,7 +86,7 @@ export default function Home() {
 
       <Earth />
 
-      <header className="hero" id="top">
+      <header className="hero" id="top" data-nav="dark">
         <div className="stars" />
         <div className="container">
           <div className="micro dim reveal" style={{ marginBottom: 30 }}>
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* PHOTO PLUNGE */}
-      <section className="plunge">
+      <section className="plunge" data-nav="dark">
         <img className="plunge-img" src="/plunge-forest.jpg" alt="Sunlight through a forest canopy seen from below" />
         <div className="plunge-grad" />
         <div className="plunge-inner">
@@ -254,7 +254,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="verify">
+      <section className="verify" data-nav="dark">
         <div className="container">
           <div className="v-eyebrow reveal">[&nbsp;&nbsp;How we keep it honest&nbsp;&nbsp;]</div>
           <h2 className="reveal">If we can&apos;t verify it, we don&apos;t fund it.</h2>
@@ -325,7 +325,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="closing">
+      <section className="closing" data-nav="dark">
         <div className="container" style={{ maxWidth: 880 }}>
           <div className="micro reveal">Founding programmes open now</div>
           <h2 className="reveal">
