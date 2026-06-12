@@ -168,6 +168,7 @@ export default function ImpactEarth() {
       const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
       let curRot = pinObjs[0].focusY;
       let curZoom = 2.85;
+      const lookTarget = { y: 0 };
       sphere.rotation.y = curRot;
 
       controlRef.current = (i) => {
@@ -209,8 +210,9 @@ export default function ImpactEarth() {
         sphere.rotation.y = curRot;
         cam.position.z = curZoom;
         pinObjs[tour.active].pin.getWorldPosition(v);
-        cam.position.y += (v.y * 0.35 - cam.position.y) * 0.04;
-        cam.lookAt(0, 0, 0);
+        cam.position.y += (v.y * 0.62 - cam.position.y) * 0.04;
+        lookTarget.y += (v.y * 0.5 - lookTarget.y) * 0.04;
+        cam.lookAt(0, lookTarget.y, 0);
 
         pinObjs.forEach((p, i) => {
           p.halo.scale.setScalar(1 + Math.sin(t * 2 + i * 1.7) * 0.35);
