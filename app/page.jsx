@@ -36,25 +36,34 @@ export default function Home() {
       .forEach((el) => io.observe(el));
 
     const nav = document.getElementById("nav");
-    const hero = document.querySelector(".hero");
-    let navIO;
-    if (nav && hero) {
-      navIO = new IntersectionObserver(
-        (es) =>
-          es.forEach((e) =>
-            nav.classList.toggle(
-              "on-dark",
-              e.isIntersecting && e.intersectionRatio > 0.1
-            )
-          ),
-        { threshold: [0, 0.1, 0.5] }
-      );
-      navIO.observe(hero);
+    const darkSections = Array.from(
+      document.querySelectorAll('[data-nav="dark"]')
+    );
+    let onScroll;
+    if (nav && darkSections.length) {
+      const NAV_H = 82;
+      onScroll = () => {
+        let onDark = false;
+        for (const el of darkSections) {
+          const r = el.getBoundingClientRect();
+          if (r.top <= NAV_H && r.bottom >= 0) {
+            onDark = true;
+            break;
+          }
+        }
+        nav.classList.toggle("on-dark", onDark);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll);
     }
 
     return () => {
       io.disconnect();
-      if (navIO) navIO.disconnect();
+      if (onScroll) {
+        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("resize", onScroll);
+      }
     };
   }, []);
 

@@ -35,6 +35,10 @@ a{color:inherit;text-decoration:none}
 /* NAV */
 nav{position:fixed;top:0;width:100%;z-index:60;background:rgba(244,243,238,.78);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,0,0,.05);transition:background .3s,border-color .3s}
 nav.on-dark{background:rgba(12,26,16,.5);border-bottom-color:rgba(255,255,255,.08)}
+nav .nav-links a:not(.btn){color:var(--green-deep);transition:color .3s ease}
+nav.on-dark .nav-links a:not(.btn){color:var(--green-mid)}
+nav .nav-links .btn{color:var(--green-mid)}
+nav.on-dark .nav-links .btn{background:var(--green-deep)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:82px;max-width:1240px;margin:0 auto;padding:0 44px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand .mark{width:42px;height:42px;border-radius:12px;background:linear-gradient(160deg,#3fbf6e,#179a4b);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(23,154,75,.3)}
