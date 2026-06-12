@@ -66,31 +66,31 @@
       <!-- ===== UP FOR GRABS HERO CARD (pledge state) ===== -->
       <rect x="20" y="176" width="350" height="182" rx="22" fill="url(#hero)" filter="url(#camShadow)"/>
       <text x="40" y="204" fill="#a8d9bd" font-size="10" font-weight="700" letter-spacing="1.2">GREENCO &#183; SUMMER PROGRAMME</text>
-      <text x="40" y="232" fill="#ffffff" font-size="22" font-weight="800">Up for grabs</text>
+      <text x="40" y="230" fill="#ffffff" font-size="22" font-weight="800">Up for grabs</text>
+      <text x="40" y="250" fill="#a8d9bd" font-size="10.5" font-weight="600">Your team picks one. The winners decide which becomes real.</text>
 
       <!-- prize row 1: trees -->
-      <g transform="translate(40,246)">
+      <g transform="translate(40,264)">
         <circle cx="13" cy="13" r="13" fill="#ffffff" opacity="0.18"/>
         <g transform="translate(13,13)"><path d="M0 -7 l5 9 h-10 z M0 -3 l5 9 h-10 z" fill="#ffffff"/></g>
         <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">9,500 trees planted</text>
       </g>
       <!-- prize row 2: water -->
-      <g transform="translate(40,278)">
+      <g transform="translate(40,296)">
         <circle cx="13" cy="13" r="13" fill="#ffffff" opacity="0.18"/>
         <path d="M13 5 c5.5 7.5 5.5 12 0 14 c-5.5 -2 -5.5 -6.5 0 -14z" fill="#ffffff"/>
-        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">2 tonnes of plastic cleared</text>
+        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">13 tonnes of plastic cleared</text>
       </g>
       <!-- prize row 3: wildlife -->
-      <g transform="translate(40,310)">
+      <g transform="translate(40,328)">
         <circle cx="13" cy="13" r="13" fill="#ffffff" opacity="0.18"/>
         <g transform="translate(13,14)" fill="#ffffff">
           <ellipse cx="0" cy="2.5" rx="4" ry="3.4"/>
           <circle cx="-4.6" cy="-2.2" r="1.7"/><circle cx="0" cy="-3.6" r="1.7"/><circle cx="4.6" cy="-2.2" r="1.7"/>
         </g>
-        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">280 snares removed</text>
+        <text x="36" y="18" fill="#ffffff" font-size="14" font-weight="700">835 snares removed</text>
       </g>
 
-      <text x="40" y="348" fill="#a8d9bd" font-size="10.5" font-weight="600">The winning team chooses which one becomes real</text>
 
       <!-- ===== GLOBAL SECTION ===== -->
       <text x="24" y="398" fill="#16331f" font-size="13" font-weight="700">Across all of Sprout</text>
