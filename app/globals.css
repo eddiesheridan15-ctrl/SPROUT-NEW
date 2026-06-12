@@ -37,7 +37,8 @@ nav{position:fixed;top:0;width:100%;z-index:60;background:rgba(244,243,238,.78);
 nav.on-dark{background:rgba(12,26,16,.5);border-bottom-color:rgba(255,255,255,.08)}
 nav .nav-links a:not(.btn){color:var(--green-deep);transition:color .3s ease}
 nav.on-dark .nav-links a:not(.btn){color:var(--green-mid)}
-nav .nav-links .btn{color:var(--green-mid)}
+nav .nav-links .btn{color:var(--green-mid)!important}
+nav .nav-links .btn .dot{background:var(--green-mid)}
 nav.on-dark .nav-links .btn{background:var(--green-deep)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:82px;max-width:1240px;margin:0 auto;padding:0 44px}
 .brand{display:flex;align-items:center;gap:12px}
