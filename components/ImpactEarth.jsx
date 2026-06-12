@@ -8,6 +8,8 @@ const SPOTS = [
     label: "Reforestation \u00b7 East Africa",
     pill: "Land",
     title: "Land \u00b7 Reforestation",
+    img: "/impact/land.jpg",
+    imgAlt: "Hands cradling a young tree seedling in soil",
     points: [
       "Native seedlings planted and protected",
       "Degraded land brought back to life",
@@ -20,6 +22,8 @@ const SPOTS = [
     label: "Wildlife \u00b7 Southern Africa",
     pill: "Wildlife",
     title: "Wildlife \u00b7 Conservation",
+    img: "/impact/wildlife.jpg",
+    imgAlt: "A cheetah watching over open savanna grassland",
     points: [
       "Ranger patrols kept in the field",
       "Snares found and removed",
@@ -32,6 +36,8 @@ const SPOTS = [
     label: "River cleanup \u00b7 Southeast Asia",
     pill: "Water",
     title: "Water \u00b7 River cleanup",
+    img: "/impact/water.jpg",
+    imgAlt: "Plastic bottles and waste gathered for removal",
     points: [
       "River plastic intercepted at source",
       "Every tonne weighed and reported",
@@ -161,7 +167,7 @@ export default function ImpactEarth() {
       const MANUAL_HOLD = 9;
       const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
       let curRot = pinObjs[0].focusY;
-      let curZoom = 3.15;
+      let curZoom = 2.45;
       sphere.rotation.y = curRot;
 
       controlRef.current = (i) => {
@@ -197,7 +203,7 @@ export default function ImpactEarth() {
           setUiActive(tour.active);
         }
         const targetRot = pinObjs[tour.active].focusY;
-        const targetZoom = tour.mode === "hold" ? 3.15 : 4.4;
+        const targetZoom = tour.mode === "hold" ? 2.45 : 4.4;
         curRot += (targetRot - curRot) * 0.045;
         curZoom += (targetZoom - curZoom) * 0.05;
         sphere.rotation.y = curRot;
@@ -267,6 +273,7 @@ export default function ImpactEarth() {
         </span>
       ))}
       <div className="ie-info" key={uiActive}>
+        <img className="ie-img" src={SPOTS[uiActive].img} alt={SPOTS[uiActive].imgAlt} />
         <h4>{SPOTS[uiActive].title}</h4>
         {SPOTS[uiActive].points.map((p) => (
           <div className="ie-li" key={p}>

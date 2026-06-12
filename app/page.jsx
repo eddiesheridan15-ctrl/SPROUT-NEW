@@ -241,6 +241,19 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PHOTO PLUNGE */}
+      <section className="plunge">
+        <img className="plunge-img" src="/plunge-forest.jpg" alt="Sunlight through a forest canopy seen from below" />
+        <div className="plunge-grad" />
+        <div className="plunge-inner">
+          <h2 className="reveal">
+            Four weeks of competition.
+            <br />
+            <span>A patch of the planet, repaired.</span>
+          </h2>
+        </div>
+      </section>
+
       <section className="verify">
         <div className="container">
           <div className="v-eyebrow reveal">[&nbsp;&nbsp;How we keep it honest&nbsp;&nbsp;]</div>
