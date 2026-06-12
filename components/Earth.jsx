@@ -49,8 +49,12 @@ export default function Earth() {
       // Opening face of the globe. 0 shows the empty Pacific/Atlantic; ~1.9
       // brings the land-rich Africa/Europe face to the camera. Nudge this one
       // number to re-aim the opening view (radians; +/- spins it round).
-      const OPENING_ROTATION = 1.9;
+      const OPENING_ROTATION = 0.95;
       sphere.rotation.y = OPENING_ROTATION;
+      // Vertical tilt at the top of the page. Negative tips the globe's north
+      // toward the camera (shows more northern Asia/Europe, less south pole).
+      // Nudge this to re-aim the opening vertically.
+      const OPENING_TILT = -0.32;
       scene.add(sphere);
 
       const atmMat = new THREE.ShaderMaterial({
@@ -126,7 +130,7 @@ export default function Earth() {
         sphere.scale.setScalar(s);
         atmo.position.copy(sphere.position);
         atmo.scale.setScalar(s);
-        sphere.rotation.x = curY * 0.4;
+        sphere.rotation.x = OPENING_TILT + curY * 0.4;
         // Fade out fully by 65% of the way to the built section, so the globe
         // is completely invisible well before that headline appears.
         const op = curY < 0.5 ? 1 : Math.max(0, 1 - (curY - 0.5) / 0.15);
