@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from "react";
 
 const SPOTS = [
   {
-    lat: -6.2,
-    lon: 35.0,
-    label: "Reforestation \u00b7 East Africa",
+    lat: 54.0,
+    lon: -2.5,
+    label: "Reforestation \u00b7 United Kingdom",
     pill: "Land",
     title: "Land \u00b7 Reforestation",
     img: "/impact/land.jpg",
@@ -162,12 +162,12 @@ export default function ImpactEarth() {
       cleanupResize = () => window.removeEventListener("resize", resize);
 
       // Guided tour with manual override from the cause pills.
-      const TRAVEL = 2.2;
+      const TRAVEL = 2.9;
       const HOLD = 3.4;
       const MANUAL_HOLD = 9;
       const tour = { mode: "hold", active: 0, phaseT: 0, dwell: HOLD };
       let curRot = pinObjs[0].focusY;
-      let curZoom = 2.45;
+      let curZoom = 2.85;
       sphere.rotation.y = curRot;
 
       controlRef.current = (i) => {
@@ -203,7 +203,7 @@ export default function ImpactEarth() {
           setUiActive(tour.active);
         }
         const targetRot = pinObjs[tour.active].focusY;
-        const targetZoom = tour.mode === "hold" ? 2.45 : 4.4;
+        const targetZoom = tour.mode === "hold" ? 2.85 : 4.6;
         curRot += (targetRot - curRot) * 0.045;
         curZoom += (targetZoom - curZoom) * 0.05;
         sphere.rotation.y = curRot;
