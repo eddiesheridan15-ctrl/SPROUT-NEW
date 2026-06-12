@@ -45,16 +45,18 @@ export default function Earth() {
           specular: 0x224433,
         })
       );
-      sphere.rotation.z = 0.41;
-      // Opening face of the globe. 0 shows the empty Pacific/Atlantic; ~1.9
-      // brings the land-rich Africa/Europe face to the camera. Nudge this one
-      // number to re-aim the opening view (radians; +/- spins it round).
-      const OPENING_ROTATION = 0.95;
+      // Rotation order YXZ: apply Y (longitude spin) first, then X (vertical
+      // tilt), so the two opening controls below do not interfere with each
+      // other the way default-order Euler angles would.
+      sphere.rotation.order = "YXZ";
+      // Opening face of the globe (longitude). 0 shows the empty Pacific; higher
+      // spins east toward Asia/Australia, lower spins west toward Africa.
+      const OPENING_ROTATION = 2.9;
       sphere.rotation.y = OPENING_ROTATION;
       // Vertical tilt at the top of the page. Negative tips the globe's north
       // toward the camera (shows more northern Asia/Europe, less south pole).
-      // Nudge this to re-aim the opening vertically.
       const OPENING_TILT = -0.32;
+      sphere.rotation.x = OPENING_TILT;
       scene.add(sphere);
 
       const atmMat = new THREE.ShaderMaterial({
