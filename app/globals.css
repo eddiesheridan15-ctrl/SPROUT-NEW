@@ -431,15 +431,21 @@ footer .tg{color:var(--muted);font-size:15px}
 @media(max-width:600px){
   .ie-eyebrow{top:16px;left:50%;transform:translateX(-50%);text-align:center;font-size:10px;width:100%}
   .ie-info{
-    left:50%;right:auto;top:52px;
+    left:50%;right:auto;top:50px;
     transform:translateX(-50%);
-    width:188px;max-width:calc(100% - 36px);
-    padding:10px;
-    flex-direction:column;align-items:stretch;
+    width:auto;max-width:calc(100% - 28px);
+    padding:11px;
+    flex-direction:row;align-items:center;gap:11px;
   }
-  .ie-info h4{font-size:14px;margin-bottom:0;text-align:center;white-space:normal;line-height:1.25}
-  .ie-info .ie-li,.ie-info .ie-note{display:none}
-  .ie-img{height:112px;margin-bottom:9px}
+  .ie-img{
+    width:96px;height:96px;flex-shrink:0;margin-bottom:0;
+    object-fit:cover;border-radius:12px;
+  }
+  .ie-txt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
+  .ie-info h4{font-size:13px;margin-bottom:8px;text-align:left;white-space:normal;line-height:1.2}
+  .ie-info .ie-li{display:flex;font-size:11px;line-height:1.25;margin-bottom:5px;gap:6px}
+  .ie-info .ie-li b{flex-shrink:0}
+  .ie-info .ie-note{display:none}
   .ie-pills{
     left:50%;right:auto;bottom:16px;
     transform:translateX(-50%);

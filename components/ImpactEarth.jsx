@@ -161,7 +161,7 @@ export default function ImpactEarth() {
       cleanupResize = () => window.removeEventListener("resize", resize);
 
       // Guided tour with manual override from the cause pills.
-      const TRAVEL = 1.0;
+      const TRAVEL = 1.5;
       const HOLD = 5.0;
       const MANUAL_HOLD = 9;
       const tour = { mode: "intro", active: 0, phaseT: 0, dwell: HOLD };
@@ -223,7 +223,7 @@ export default function ImpactEarth() {
         const arrived = tour.mode === "hold" && tour.phaseT > 0.4;
         const targetZoom = arrived ? 2.85 : 4.6;
         // Pan fast while travelling, settle quickly once holding.
-        const dirLerp = tour.mode === "travel" ? 0.22 : 0.12;
+        const dirLerp = tour.mode === "travel" ? 0.11 : 0.08;
         camDir.lerp(targetDir, dirLerp).normalize();
         curZoom += (targetZoom - curZoom) * 0.14;
         cam.position.copy(camDir).multiplyScalar(curZoom);
