@@ -434,8 +434,8 @@ footer .tg{color:var(--muted);font-size:15px}
     display:flex;
     left:50%;right:auto;top:48px;
     transform:translateX(-50%);
-    width:auto;max-width:calc(100% - 24px);
-    padding:12px;
+    width:calc(100% - 24px);max-width:none;
+    padding:13px;
     flex-direction:row;align-items:center;gap:13px;
   }
   .ie-img{
@@ -444,7 +444,7 @@ footer .tg{color:var(--muted);font-size:15px}
   }
   .ie-txt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
   .ie-info h4{font-size:14px;margin-bottom:9px;text-align:left;white-space:normal;line-height:1.2}
-  .ie-info .ie-li{display:flex;font-size:11.5px;line-height:1.3;margin-bottom:6px;gap:6px}
+  .ie-info .ie-li{display:flex;font-size:11px;line-height:1.3;margin-bottom:6px;gap:6px;white-space:nowrap}
   .ie-info .ie-li:last-child{margin-bottom:0}
   .ie-info .ie-li b{flex-shrink:0}
   .ie-info .ie-note{display:none}
