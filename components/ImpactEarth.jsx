@@ -222,7 +222,7 @@ export default function ImpactEarth() {
         // Stay zoomed out while travelling and for the first ~0.4s of the hold,
         // then zoom in. Quick pan to the pin, brief pause, then zoom.
         const arrived = tour.mode === "hold" && tour.phaseT > 0.4;
-        if (arrived) setShowCard(true);
+        if (tour.mode === "hold") setShowCard(true);
         const targetZoom = arrived ? 2.85 : 4.6;
         // Pan fast while travelling, settle quickly once holding.
         const dirLerp = tour.mode === "travel" ? 0.11 : 0.08;
