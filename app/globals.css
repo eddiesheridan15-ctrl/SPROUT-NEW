@@ -308,12 +308,12 @@ footer .tg{color:var(--muted);font-size:15px}
   .ie-canvas{position:absolute;inset:0;height:100%}
   .ie-eyebrow{top:16px;left:16px;font-size:10px}
   .ie-info{
-    display:flex;flex-direction:column;gap:0;align-items:stretch;
-    position:absolute;top:44px;left:50%;transform:translateX(-50%);
-    width:200px;right:auto;padding:10px;animation:ieIn .4s ease;
+    display:flex!important;flex-direction:column;gap:0;align-items:stretch;
+    position:absolute;top:54px;left:50%;right:auto!important;transform:translateX(-50%);
+    width:200px!important;max-width:calc(100% - 32px);padding:10px;animation:ieIn .4s ease;
   }
-  .ie-img{width:100%;height:120px;margin-bottom:10px;object-fit:cover}
-  .ie-info h4{font-size:15px;margin-bottom:0;text-align:center}
+  .ie-img{width:100%;height:118px;margin-bottom:10px;object-fit:cover}
+  .ie-info h4{font-size:15px;margin-bottom:0;text-align:center;white-space:normal;line-height:1.25}
   /* hide the detail bullets + note on phones; they show on desktop */
   .ie-info .ie-li,.ie-info .ie-note{display:none}
   .ie-pills{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);margin:0;justify-content:center;flex-wrap:wrap}
