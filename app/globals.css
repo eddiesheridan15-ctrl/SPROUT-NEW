@@ -291,7 +291,7 @@ footer .tg{color:var(--muted);font-size:15px}
 
   /* ===== LIVE RACE: show name + tally stacked above each circle (Image 1) ===== */
   .nr{padding:24px 16px}
-  .nr-run{flex-direction:column-reverse;gap:6px}
+  .nr-run{flex-direction:column-reverse;gap:6px;align-items:center}
   .nr-tag{display:inline-block;font-size:11px;padding:3px 9px;white-space:nowrap}
   .nr-av{width:40px;height:40px;font-size:15px}
   .nr-chip{top:-22px;right:auto;left:50%;transform:translateX(-50%)}

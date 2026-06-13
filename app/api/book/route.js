@@ -9,7 +9,7 @@ import { Resend } from "resend";
 // Until a key is set, the form still "succeeds" so you can preview the site.
 // ----------------------------------------------------------------
 
-const TO_ADDRESS = "hello@sproutclimate.com";
+const TO_ADDRESS = "eddiesheridan15@gmail.com";
 const FROM_ADDRESS = "Sprout Website <onboarding@resend.dev>"; // swap to your verified domain later
 
 export async function POST(request) {

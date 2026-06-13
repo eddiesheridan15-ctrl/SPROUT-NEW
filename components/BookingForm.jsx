@@ -112,7 +112,7 @@ export default function BookingForm() {
       {status === "error" && (
         <p style={{ color: "#b3261e", marginBottom: 20 }}>
           Something went wrong sending that. Please try again or email
-          hello@sproutclimate.com.
+          eddiesheridan15@gmail.com.
         </p>
       )}
 

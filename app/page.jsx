@@ -419,7 +419,7 @@ export default function Home() {
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>
           </div>
-          <p className="em">hello@sproutclimate.com</p>
+          <p className="em">eddiesheridan15@gmail.com</p>
           <p className="tg">
             Sprout. Saving the Planet&apos;s Resources, One Upload at a Time.
           </p>

@@ -84,7 +84,7 @@ export default function LiveLeaderboard() {
             <div className="nr-finish" />
             <div
               className="nr-trail"
-              style={{ width: Math.max(0, left - 8) + "%" }}
+              style={{ width: Math.max(0, left - 8 - 4) + "%" }}
             />
             <div className="nr-run" style={{ left: left + "%" }}>
               <span className="nr-av" style={{ background: t.color }}>
