@@ -116,16 +116,21 @@ function DesktopCarousel() {
   );
 }
 
-/* ===== MOBILE: one phone at a time, arrows + swipe + one-time hint ===== */
+/* ===== MOBILE: seamless sliding track, all screens in one row ===== */
 function MobileCarousel() {
   const [index, setIndex] = useState(0);
   const [showHint, setShowHint] = useState(true);
-  const [drag, setDrag] = useState(0);
+  const [drag, setDrag] = useState(0); // live finger offset in px
+  const [animate, setAnimate] = useState(true);
+  const viewportRef = useRef(null);
   const startX = useRef(null);
   const startY = useRef(null);
   const dragging = useRef(false);
+  const axisLocked = useRef(false);
+  const horizontal = useRef(false);
 
   const last = SCREENS.length - 1;
+
   const go = (i) => {
     setIndex(Math.max(0, Math.min(last, i)));
     setShowHint(false);
@@ -137,18 +142,35 @@ function MobileCarousel() {
     startX.current = x;
     startY.current = y;
     dragging.current = true;
+    axisLocked.current = false;
+    horizontal.current = false;
+    setAnimate(false);
   };
-  const onMove = (x, y) => {
+
+  const onMove = (x, y, e) => {
     if (!dragging.current || startX.current === null) return;
     const dx = x - startX.current;
     const dy = y - startY.current;
-    // only treat as horizontal swipe if mostly horizontal, so vertical page scroll still works
-    if (Math.abs(dx) > Math.abs(dy)) setDrag(dx);
+    // Lock the axis on first meaningful movement so vertical scroll still works.
+    if (!axisLocked.current && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
+      axisLocked.current = true;
+      horizontal.current = Math.abs(dx) > Math.abs(dy);
+    }
+    if (axisLocked.current && horizontal.current) {
+      if (e && e.cancelable) e.preventDefault();
+      // Add resistance at the two ends so it does not drag into empty space.
+      let d = dx;
+      if ((index === 0 && dx > 0) || (index === last && dx < 0)) d = dx * 0.32;
+      setDrag(d);
+    }
   };
+
   const onEnd = () => {
     if (!dragging.current) return;
     dragging.current = false;
-    const threshold = 50;
+    setAnimate(true);
+    const w = viewportRef.current ? viewportRef.current.clientWidth : 320;
+    const threshold = Math.min(60, w * 0.18);
     if (drag <= -threshold) next();
     else if (drag >= threshold) prev();
     setDrag(0);
@@ -156,42 +178,60 @@ function MobileCarousel() {
     startY.current = null;
   };
 
+  const vw = viewportRef.current ? viewportRef.current.clientWidth : 0;
+  const dragPct = vw ? (drag / vw) * 100 : 0;
+  const trackX = -index * 100 + dragPct;
+
   return (
     <div style={{ textAlign: "center" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
         <button onClick={prev} aria-label="Previous" style={mArrowStyle} disabled={index === 0}>
-          ‹
+          \u2039
         </button>
 
         <div
+          ref={viewportRef}
           style={{
             position: "relative",
             flex: "1 1 auto",
-            maxWidth: 320,
+            maxWidth: 300,
             overflow: "hidden",
             touchAction: "pan-y",
           }}
           onTouchStart={(e) => onStart(e.touches[0].clientX, e.touches[0].clientY)}
-          onTouchMove={(e) => onMove(e.touches[0].clientX, e.touches[0].clientY)}
+          onTouchMove={(e) => onMove(e.touches[0].clientX, e.touches[0].clientY, e)}
           onTouchEnd={onEnd}
         >
-          <img
-            src={SCREENS[index]}
-            alt="Sprout app screen"
-            draggable={false}
+          <div
             style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              transform: `translateX(${drag}px)`,
-              transition: drag === 0 ? "transform 0.35s ease" : "none",
-              filter: "drop-shadow(0 24px 44px rgba(13,42,23,0.22))",
+              display: "flex",
+              width: `${SCREENS.length * 100}%`,
+              transform: `translateX(${trackX / SCREENS.length}%)`,
+              transition: animate ? "transform 0.4s cubic-bezier(0.22,1,0.36,1)" : "none",
+              willChange: "transform",
             }}
-          />
+          >
+            {SCREENS.map((src) => (
+              <div key={src} style={{ width: `${100 / SCREENS.length}%`, flexShrink: 0, padding: "0 2px", boxSizing: "border-box" }}>
+                <img
+                  src={src}
+                  alt="Sprout app screen"
+                  draggable={false}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                    filter: "drop-shadow(0 24px 44px rgba(13,42,23,0.22))",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <button onClick={next} aria-label="Next" style={mArrowStyle} disabled={index === last}>
-          ›
+          \u203a
         </button>
       </div>
 
@@ -211,7 +251,7 @@ function MobileCarousel() {
             opacity: 0.85,
           }}
         >
-          <span style={{ fontSize: 15 }}>‹</span> Swipe <span style={{ fontSize: 15 }}>›</span>
+          <span style={{ fontSize: 15 }}>\u2039</span> Swipe <span style={{ fontSize: 15 }}>\u203a</span>
         </div>
       )}
 
