@@ -135,8 +135,8 @@ function MobileCarousel() {
     setIndex(Math.max(0, Math.min(last, i)));
     setShowHint(false);
   };
-  const prev = () => go(index - 1);
-  const next = () => go(index + 1);
+  const prev = () => go(index === 0 ? last : index - 1);
+  const next = () => go(index === last ? 0 : index + 1);
 
   const onStart = (x, y) => {
     startX.current = x;
@@ -158,10 +158,7 @@ function MobileCarousel() {
     }
     if (axisLocked.current && horizontal.current) {
       if (e && e.cancelable) e.preventDefault();
-      // Add resistance at the two ends so it does not drag into empty space.
-      let d = dx;
-      if ((index === 0 && dx > 0) || (index === last && dx < 0)) d = dx * 0.32;
-      setDrag(d);
+      setDrag(dx);
     }
   };
 
@@ -184,16 +181,12 @@ function MobileCarousel() {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-        <button onClick={prev} aria-label="Previous" style={mArrowStyle} disabled={index === 0}>
-          \u2039
-        </button>
-
+      <div style={{ position: "relative", display: "flex", justifyContent: "center" }}>
         <div
           ref={viewportRef}
           style={{
             position: "relative",
-            flex: "1 1 auto",
+            width: "100%",
             maxWidth: 300,
             overflow: "hidden",
             touchAction: "pan-y",
@@ -230,8 +223,11 @@ function MobileCarousel() {
           </div>
         </div>
 
-        <button onClick={next} aria-label="Next" style={mArrowStyle} disabled={index === last}>
-          \u203a
+        <button onClick={prev} aria-label="Previous" style={{ ...mArrowStyle, position: "absolute", left: 0, top: "42%", transform: "translateY(-50%)", zIndex: 2 }}>
+          ‹
+        </button>
+        <button onClick={next} aria-label="Next" style={{ ...mArrowStyle, position: "absolute", right: 0, top: "42%", transform: "translateY(-50%)", zIndex: 2 }}>
+          ›
         </button>
       </div>
 
@@ -251,7 +247,7 @@ function MobileCarousel() {
             opacity: 0.85,
           }}
         >
-          <span style={{ fontSize: 15 }}>\u2039</span> Swipe <span style={{ fontSize: 15 }}>\u203a</span>
+          <span style={{ fontSize: 15 }}>‹</span> Swipe <span style={{ fontSize: 15 }}>›</span>
         </div>
       )}
 
@@ -290,12 +286,14 @@ const arrowStyle = {
 };
 
 const mArrowStyle = {
-  width: 46,
-  height: 46,
+  width: 42,
+  height: 42,
   borderRadius: "50%",
-  border: "1px solid rgba(0,0,0,0.12)",
-  background: "#fff",
-  fontSize: 24,
+  border: "1px solid rgba(0,0,0,0.08)",
+  background: "rgba(255,255,255,0.92)",
+  boxShadow: "0 4px 14px rgba(13,42,23,0.18)",
+  backdropFilter: "blur(4px)",
+  fontSize: 22,
   lineHeight: 1,
   cursor: "pointer",
   color: "var(--green-deep)",
