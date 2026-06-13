@@ -437,16 +437,17 @@ footer .tg{color:var(--muted);font-size:15px}
     width:calc(100% - 24px);max-width:none;
     padding:13px;
     flex-direction:row;align-items:center;gap:13px;
+    animation:none;
   }
   .ie-img{
-    width:104px;height:104px;flex-shrink:0;margin-bottom:0;
+    width:92px;height:92px;flex-shrink:0;margin-bottom:0;
     object-fit:cover;border-radius:12px;
   }
   .ie-txt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
   .ie-info h4{font-size:14px;margin-bottom:9px;text-align:left;white-space:normal;line-height:1.2}
-  .ie-info .ie-li{display:flex;font-size:11px;line-height:1.3;margin-bottom:6px;gap:6px;white-space:nowrap}
+  .ie-info .ie-li{display:flex;align-items:center;font-size:10px;line-height:1.3;margin-bottom:6px;gap:6px;white-space:nowrap}
   .ie-info .ie-li:last-child{margin-bottom:0}
-  .ie-info .ie-li b{flex-shrink:0}
+  .ie-info .ie-li b{flex-shrink:0;line-height:1}
   .ie-info .ie-note{display:none}
   .ie-pills{
     left:50%;right:auto;bottom:16px;
