@@ -303,20 +303,9 @@ footer .tg{color:var(--muted);font-size:15px}
   .v-grid{grid-template-columns:1fr;gap:14px;margin-top:40px}
   .v-tile{padding:22px 20px}
 
-  /* ===== IMPACT EARTH: compact card (photo + title), globe stays the hero ===== */
-  .iearth{height:460px;min-height:460px;margin-top:48px}
+  /* ===== IMPACT EARTH: mobile rules live at end of file so they win source-order ===== */
+  .iearth{height:480px;min-height:480px;margin-top:48px}
   .ie-canvas{position:absolute;inset:0;height:100%}
-  .ie-eyebrow{top:16px;left:16px;font-size:10px}
-  .ie-info{
-    display:flex!important;flex-direction:column;gap:0;align-items:stretch;
-    position:absolute;top:54px;left:50%;right:auto!important;transform:translateX(-50%);
-    width:200px!important;max-width:calc(100% - 32px);padding:10px;animation:ieIn .4s ease;
-  }
-  .ie-img{width:100%;height:118px;margin-bottom:10px;object-fit:cover}
-  .ie-info h4{font-size:15px;margin-bottom:0;text-align:center;white-space:normal;line-height:1.25}
-  /* hide the detail bullets + note on phones; they show on desktop */
-  .ie-info .ie-li,.ie-info .ie-note{display:none}
-  .ie-pills{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);margin:0;justify-content:center;flex-wrap:wrap}
 
   /* pull quote */
   .pull{padding-left:20px;margin-top:44px}
@@ -433,4 +422,29 @@ footer .tg{color:var(--muted);font-size:15px}
 @media(max-width:880px){
   .plunge{height:70vh;min-height:480px}
   .plunge-inner{padding:0 22px 44px}
+}
+
+/* ============================================================
+   IMPACT EARTH, PHONE OVERRIDES (placed last so they always win)
+   Card: small, centred, top of globe. Pills: centred row below.
+   ============================================================ */
+@media(max-width:600px){
+  .ie-eyebrow{top:16px;left:50%;transform:translateX(-50%);text-align:center;font-size:10px;width:100%}
+  .ie-info{
+    left:50%;right:auto;top:52px;
+    transform:translateX(-50%);
+    width:188px;max-width:calc(100% - 36px);
+    padding:10px;
+    flex-direction:column;align-items:stretch;
+  }
+  .ie-info h4{font-size:14px;margin-bottom:0;text-align:center;white-space:normal;line-height:1.25}
+  .ie-info .ie-li,.ie-info .ie-note{display:none}
+  .ie-img{height:112px;margin-bottom:9px}
+  .ie-pills{
+    left:50%;right:auto;bottom:16px;
+    transform:translateX(-50%);
+    justify-content:center;flex-wrap:nowrap;gap:8px;
+    width:max-content;max-width:calc(100% - 24px);
+  }
+  .ie-pillbtn{padding:8px 14px;font-size:12px;white-space:nowrap}
 }
