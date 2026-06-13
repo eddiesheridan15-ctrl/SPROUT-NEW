@@ -51,6 +51,7 @@ export default function ImpactEarth() {
   const canvasRef = useRef(null);
   const controlRef = useRef(null);
   const [uiActive, setUiActive] = useState(0);
+  const [showCard, setShowCard] = useState(false);
 
   useEffect(() => {
     let renderer, frameId, io, cleanupResize;
@@ -221,6 +222,7 @@ export default function ImpactEarth() {
         // Stay zoomed out while travelling and for the first ~0.4s of the hold,
         // then zoom in. Quick pan to the pin, brief pause, then zoom.
         const arrived = tour.mode === "hold" && tour.phaseT > 0.4;
+        if (arrived) setShowCard(true);
         const targetZoom = arrived ? 2.85 : 4.6;
         // Pan fast while travelling, settle quickly once holding.
         const dirLerp = tour.mode === "travel" ? 0.11 : 0.08;
@@ -292,6 +294,7 @@ export default function ImpactEarth() {
           {s.label}
         </span>
       ))}
+      {showCard && (
       <div className="ie-info" key={uiActive}>
         <img className="ie-img" src={SPOTS[uiActive].img} alt={SPOTS[uiActive].imgAlt} />
         <div className="ie-txt">
@@ -305,6 +308,7 @@ export default function ImpactEarth() {
           <div className="ie-note">The winning team sends the donation here.</div>
         </div>
       </div>
+      )}
       <div className="ie-pills">
         {SPOTS.map((s, i) => (
           <button
