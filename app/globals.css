@@ -303,21 +303,19 @@ footer .tg{color:var(--muted);font-size:15px}
   .v-grid{grid-template-columns:1fr;gap:14px;margin-top:40px}
   .v-tile{padding:22px 20px}
 
-  /* ===== IMPACT EARTH: full globe with a horizontal info card overlaid near the top (Image 2) ===== */
-  .iearth{height:440px;min-height:440px;margin-top:48px}
+  /* ===== IMPACT EARTH: compact card (photo + title), globe stays the hero ===== */
+  .iearth{height:460px;min-height:460px;margin-top:48px}
   .ie-canvas{position:absolute;inset:0;height:100%}
-  .ie-eyebrow{top:18px;left:18px;font-size:10px}
+  .ie-eyebrow{top:16px;left:16px;font-size:10px}
   .ie-info{
-    display:flex;gap:12px;align-items:stretch;
-    position:absolute;top:46px;left:14px;right:14px;width:auto;transform:none;
-    padding:12px;animation:ieIn .4s ease;
+    display:flex;flex-direction:column;gap:0;align-items:stretch;
+    position:absolute;top:44px;left:50%;transform:translateX(-50%);
+    width:200px;right:auto;padding:10px;animation:ieIn .4s ease;
   }
-  .ie-info h4{font-size:14px;margin-bottom:8px}
-  .ie-img{width:42%;max-width:130px;height:auto;min-height:96px;margin-bottom:0;flex-shrink:0;object-fit:cover}
-  .ie-info .ie-txt{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center}
-  .ie-li{font-size:12px;margin-bottom:6px}
-  .ie-li b{font-size:12px}
-  .ie-note{margin-top:8px;padding-top:8px;font-size:10px}
+  .ie-img{width:100%;height:120px;margin-bottom:10px;object-fit:cover}
+  .ie-info h4{font-size:15px;margin-bottom:0;text-align:center}
+  /* hide the detail bullets + note on phones; they show on desktop */
+  .ie-info .ie-li,.ie-info .ie-note{display:none}
   .ie-pills{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);margin:0;justify-content:center;flex-wrap:wrap}
 
   /* pull quote */
