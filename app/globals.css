@@ -289,12 +289,12 @@ footer .tg{color:var(--muted);font-size:15px}
   .frame .item{padding:26px 0;grid-template-columns:40px 1fr}
   .frame .item h3{font-size:21px}
 
-  /* ===== LIVE RACE: show name + tally stacked above each circle (Image 1) ===== */
+  /* ===== LIVE RACE: avatar sits ON the line, tag floats above it ===== */
   .nr{padding:24px 16px}
-  .nr-run{flex-direction:column-reverse;gap:6px;align-items:center}
-  .nr-tag{display:inline-block;font-size:11px;padding:3px 9px;white-space:nowrap}
+  .nr-run{flex-direction:row;gap:0;align-items:center;justify-content:center}
+  .nr-tag{position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%);display:inline-block;font-size:11px;padding:3px 9px;white-space:nowrap}
   .nr-av{width:40px;height:40px;font-size:15px}
-  .nr-chip{top:-22px;right:auto;left:50%;transform:translateX(-50%)}
+  .nr-chip{top:auto;bottom:calc(100% + 32px);right:auto;left:50%;transform:translateX(-50%)}
   .nr-lane{height:78px}
 
   /* leaderboard (alt card, if used) */
