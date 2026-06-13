@@ -150,9 +150,9 @@ export default function ImpactEarth() {
       });
 
       const resize = () => {
-        const w = stage.clientWidth;
-        const h = stage.clientHeight;
-        renderer.setSize(w, h);
+        const w = canvas.clientWidth || stage.clientWidth;
+        const h = canvas.clientHeight || stage.clientHeight;
+        renderer.setSize(w, h, false);
         cam.aspect = w / h;
         cam.updateProjectionMatrix();
       };
@@ -161,8 +161,8 @@ export default function ImpactEarth() {
       cleanupResize = () => window.removeEventListener("resize", resize);
 
       // Guided tour with manual override from the cause pills.
-      const TRAVEL = 2.9;
-      const HOLD = 3.4;
+      const TRAVEL = 1.5;
+      const HOLD = 5.2;
       const MANUAL_HOLD = 9;
       const tour = { mode: "intro", active: 0, phaseT: 0, dwell: HOLD };
       // Camera orbits to sit directly outside the active pin, looking at centre.
@@ -218,10 +218,14 @@ export default function ImpactEarth() {
           setUiActive(tour.active);
         }
         const targetDir = tour.mode === "intro" ? asiaDir : pinObjs[tour.active].dir;
-        const targetZoom = tour.mode === "hold" ? 2.85 : 4.6;
-        // Ease the camera direction toward the target (normalized lerp ~ slerp for small steps).
-        camDir.lerp(targetDir, 0.05).normalize();
-        curZoom += (targetZoom - curZoom) * 0.05;
+        // Stay zoomed out while travelling and for the first ~0.5s of the hold,
+        // then zoom in. This gives: quick pan to the pin, brief pause, then zoom.
+        const arrived = tour.mode === "hold" && tour.phaseT > 0.5;
+        const targetZoom = arrived ? 2.85 : 4.6;
+        // Pan quickly while travelling, ease gently once holding.
+        const dirLerp = tour.mode === "travel" ? 0.12 : 0.06;
+        camDir.lerp(targetDir, dirLerp).normalize();
+        curZoom += (targetZoom - curZoom) * 0.08;
         cam.position.copy(camDir).multiplyScalar(curZoom);
         cam.up.set(0, 1, 0);
         cam.lookAt(0, 0, 0);
@@ -231,8 +235,10 @@ export default function ImpactEarth() {
           p.pin.getWorldPosition(v);
           const facing = v.clone().normalize().dot(new THREE.Vector3(0, 0, 1));
           const proj = v.clone().project(cam);
-          const x = (proj.x * 0.5 + 0.5) * stage.clientWidth;
-          const y = (-proj.y * 0.5 + 0.5) * stage.clientHeight;
+          const cw = canvas.clientWidth || stage.clientWidth;
+          const ch = canvas.clientHeight || stage.clientHeight;
+          const x = (proj.x * 0.5 + 0.5) * cw;
+          const y = (-proj.y * 0.5 + 0.5) * ch;
           if (p.el) {
             p.el.classList.toggle("active", i === tour.active);
             p.el.style.transform =

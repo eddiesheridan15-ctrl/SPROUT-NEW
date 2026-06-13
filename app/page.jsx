@@ -310,7 +310,7 @@ export default function Home() {
       </section>
 
       {/* SHARE LOOP (film section returns here post-launch) */}
-      <section style={{ paddingTop: 72 }}>
+      <section style={{ paddingTop: 24 }}>
         <div className="container">
           <h2 className="reveal" style={{ maxWidth: "20ch" }}>
             You walk away with something worth sharing.

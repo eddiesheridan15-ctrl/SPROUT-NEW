@@ -257,8 +257,15 @@ footer .tg{color:var(--muted);font-size:15px}
 /* ===== PHONE PASS (<=600px) ===== */
 @media(max-width:600px){
   .container,.nav-in{padding:0 18px}
-  section{padding:84px 0}
-  #how{padding-top:96px}
+  section{padding:72px 0}
+  #how{padding-top:84px}
+
+  /* logo lockup: bigger mark, aligned with the two text lines (Image 6) */
+  .brand{gap:14px;align-items:center}
+  .brand .mark{width:54px;height:54px;border-radius:15px}
+  .brand .mark svg{width:32px;height:32px}
+  .brand .name{font-size:23px}
+  .brand .tag{font-size:10px}
 
   /* headings: lower the floors so nothing overflows */
   .hero h1{font-size:clamp(38px,12vw,60px);letter-spacing:-.035em}
@@ -280,7 +287,15 @@ footer .tg{color:var(--muted);font-size:15px}
   .frame .item{padding:26px 0;grid-template-columns:40px 1fr}
   .frame .item h3{font-size:21px}
 
-  /* leaderboard */
+  /* ===== LIVE RACE: show name + tally stacked above each circle (Image 1) ===== */
+  .nr{padding:24px 16px}
+  .nr-run{flex-direction:column-reverse;gap:6px}
+  .nr-tag{display:inline-block;font-size:11px;padding:3px 9px;white-space:nowrap}
+  .nr-av{width:40px;height:40px;font-size:15px}
+  .nr-chip{top:-22px;right:auto;left:50%;transform:translateX(-50%)}
+  .nr-lane{height:78px}
+
+  /* leaderboard (alt card, if used) */
   .lb{margin-top:44px;padding:20px 16px 22px}
   .lb-row{height:62px}
 
@@ -288,8 +303,12 @@ footer .tg{color:var(--muted);font-size:15px}
   .v-grid{grid-template-columns:1fr;gap:14px;margin-top:40px}
   .v-tile{padding:22px 20px}
 
-  /* impact earth shorter on phones */
-  .iearth{height:380px;margin-top:48px}
+  /* ===== IMPACT EARTH: globe + info box BELOW it, faster handled in JS (Image 2) ===== */
+  .iearth{height:auto;min-height:360px;margin-top:48px;padding-bottom:0}
+  .ie-canvas{position:relative;height:360px}
+  .ie-info{display:block;position:static;transform:none;width:auto;margin:16px;animation:none}
+  .ie-img{height:150px}
+  .ie-pills{position:static;margin:0 16px 16px;justify-content:center;flex-wrap:wrap}
 
   /* pull quote */
   .pull{padding-left:20px;margin-top:44px}
@@ -299,6 +318,9 @@ footer .tg{color:var(--muted);font-size:15px}
   .callout h3{font-size:22px}
   .callout .tick{font-size:16px}
 
+  /* ===== CTA button: keep on one line (Image 5) ===== */
+  .btn-lg{font-size:16px;padding:18px 30px;white-space:nowrap}
+
   /* form */
   .form-head{margin-bottom:40px}
   .form-head p{font-size:18px}
@@ -307,11 +329,13 @@ footer .tg{color:var(--muted);font-size:15px}
   /* carousel head spacing */
   .carousel-head{margin-bottom:32px}
 
-  /* footer links wrap tighter */
+  /* footer links wrap tighter + footer lockup centred (Image 6) */
   .foot-links{gap:18px 22px;font-size:14px}
+  footer .brand{justify-content:center}
 
-  /* plunge text */
-  .plunge-inner{padding:0 18px 36px}
+  /* ===== PHOTO PLUNGE: full screen on mobile (Image 3) ===== */
+  .plunge{height:100vh;min-height:100svh;max-height:none}
+  .plunge-inner{padding:0 18px 44px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -369,7 +393,7 @@ footer .tg{color:var(--muted);font-size:15px}
 @media(max-width:880px){
   .v-grid{grid-template-columns:1fr 1fr}
   .nr{padding:26px 18px}
-  .nr-tag{display:none}
+  .nr-tag{font-size:11px;padding:3px 8px}
   .hero-tiles{gap:12px}
   .ht{padding:14px 18px}
 }
