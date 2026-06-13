@@ -187,7 +187,7 @@ function MobileCarousel() {
           style={{
             position: "relative",
             width: "100%",
-            maxWidth: 300,
+            maxWidth: 340,
             overflow: "hidden",
             touchAction: "pan-y",
           }}
@@ -214,7 +214,6 @@ function MobileCarousel() {
                     width: "100%",
                     height: "auto",
                     display: "block",
-                    filter: "drop-shadow(0 24px 44px rgba(13,42,23,0.22))",
                     pointerEvents: "none",
                   }}
                 />
