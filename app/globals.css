@@ -331,7 +331,6 @@ footer .tg{color:var(--muted);font-size:15px}
   footer .brand{justify-content:center}
 
   /* ===== PHOTO PLUNGE: full screen on mobile (Image 3) ===== */
-  .plunge{height:100vh;min-height:100svh;max-height:none}
   .plunge-inner{padding:0 18px 44px}
 }
 
@@ -456,4 +455,13 @@ footer .tg{color:var(--muted);font-size:15px}
     width:max-content;max-width:calc(100% - 24px);
   }
   .ie-pillbtn{padding:8px 14px;font-size:12px;white-space:nowrap}
+}
+
+/* ============================================================
+   PHOTO PLUNGE, PHONE FULL-SCREEN (placed last so it wins)
+   ============================================================ */
+@media(max-width:600px){
+  .plunge{height:100svh;min-height:100svh;max-height:none}
+  .plunge-img{object-position:center 42%}
+  .plunge-inner{padding:0 18px 56px}
 }
