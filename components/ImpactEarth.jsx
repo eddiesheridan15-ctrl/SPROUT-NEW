@@ -161,8 +161,8 @@ export default function ImpactEarth() {
       cleanupResize = () => window.removeEventListener("resize", resize);
 
       // Guided tour with manual override from the cause pills.
-      const TRAVEL = 1.5;
-      const HOLD = 5.2;
+      const TRAVEL = 1.0;
+      const HOLD = 5.0;
       const MANUAL_HOLD = 9;
       const tour = { mode: "intro", active: 0, phaseT: 0, dwell: HOLD };
       // Camera orbits to sit directly outside the active pin, looking at centre.
@@ -201,7 +201,7 @@ export default function ImpactEarth() {
         }
         t += 0.016;
         tour.phaseT += 0.016;
-        const INTRO = 2.6;
+        const INTRO = 1.2;
         if (tour.mode === "intro" && tour.phaseT > INTRO) {
           tour.mode = "travel";
           tour.phaseT = 0;
@@ -218,14 +218,14 @@ export default function ImpactEarth() {
           setUiActive(tour.active);
         }
         const targetDir = tour.mode === "intro" ? asiaDir : pinObjs[tour.active].dir;
-        // Stay zoomed out while travelling and for the first ~0.5s of the hold,
-        // then zoom in. This gives: quick pan to the pin, brief pause, then zoom.
-        const arrived = tour.mode === "hold" && tour.phaseT > 0.5;
+        // Stay zoomed out while travelling and for the first ~0.4s of the hold,
+        // then zoom in. Quick pan to the pin, brief pause, then zoom.
+        const arrived = tour.mode === "hold" && tour.phaseT > 0.4;
         const targetZoom = arrived ? 2.85 : 4.6;
-        // Pan quickly while travelling, ease gently once holding.
-        const dirLerp = tour.mode === "travel" ? 0.12 : 0.06;
+        // Pan fast while travelling, settle quickly once holding.
+        const dirLerp = tour.mode === "travel" ? 0.22 : 0.12;
         camDir.lerp(targetDir, dirLerp).normalize();
-        curZoom += (targetZoom - curZoom) * 0.08;
+        curZoom += (targetZoom - curZoom) * 0.14;
         cam.position.copy(camDir).multiplyScalar(curZoom);
         cam.up.set(0, 1, 0);
         cam.lookAt(0, 0, 0);
@@ -294,14 +294,16 @@ export default function ImpactEarth() {
       ))}
       <div className="ie-info" key={uiActive}>
         <img className="ie-img" src={SPOTS[uiActive].img} alt={SPOTS[uiActive].imgAlt} />
-        <h4>{SPOTS[uiActive].title}</h4>
-        {SPOTS[uiActive].points.map((p) => (
-          <div className="ie-li" key={p}>
-            <b>&#10003;</b>
-            {p}
-          </div>
-        ))}
-        <div className="ie-note">The winning team sends the donation here.</div>
+        <div className="ie-txt">
+          <h4>{SPOTS[uiActive].title}</h4>
+          {SPOTS[uiActive].points.map((p) => (
+            <div className="ie-li" key={p}>
+              <b>&#10003;</b>
+              {p}
+            </div>
+          ))}
+          <div className="ie-note">The winning team sends the donation here.</div>
+        </div>
       </div>
       <div className="ie-pills">
         {SPOTS.map((s, i) => (
