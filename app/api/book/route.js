@@ -1,31 +1,49 @@
 import { Resend } from "resend";
 
 // ----------------------------------------------------------------
-// EMAIL SETUP (do this when you deploy):
+// EMAIL SETUP (one-time, in Vercel):
 // 1. Sign up free at https://resend.com
-// 2. Create an API key
-// 3. In Vercel, add an Environment Variable:  RESEND_API_KEY = your_key
-// 4. Verify your sending domain in Resend, or use their test sender to start.
-// Until a key is set, the form still "succeeds" so you can preview the site.
+// 2. Create an API key (starts with "re_")
+// 3. In Vercel: Project > Settings > Environment Variables
+//      Name:  RESEND_API_KEY     Value: your re_... key
+//    Then redeploy.
+// 4. Sender: onboarding@resend.dev works out of the box for testing.
+//    To send from your own domain later, verify it in Resend and
+//    change FROM_ADDRESS below.
 // ----------------------------------------------------------------
 
 const TO_ADDRESS = "eddiesheridan15@gmail.com";
-const FROM_ADDRESS = "Sprout Website <onboarding@resend.dev>"; // swap to your verified domain later
+const FROM_ADDRESS = "Sprout Website <onboarding@resend.dev>";
 
 export async function POST(request) {
-  const data = await request.json();
-  const { name, email, message } = data;
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return Response.json({ error: "Bad request" }, { status: 400 });
+  }
+
+  const { name, email, message, appInterest } = data;
 
   if (!name || !email) {
-    return Response.json({ error: "Missing fields" }, { status: 400 });
+    return Response.json({ error: "Missing name or email" }, { status: 400 });
   }
 
   const key = process.env.RESEND_API_KEY;
 
-  // No key yet (preview mode): pretend success so the form flow works.
+  // No key configured: do NOT fake success. Tell the client so the form
+  // can show a fallback (email Eddie directly) instead of a false "sent".
   if (!key) {
-    console.log("New enquiry (no email key set):", { name, email, message });
-    return Response.json({ ok: true, preview: true });
+    console.log("Enquiry received but RESEND_API_KEY is not set:", {
+      name,
+      email,
+      message,
+      appInterest,
+    });
+    return Response.json(
+      { error: "Email not configured", code: "no_key" },
+      { status: 503 }
+    );
   }
 
   try {
@@ -35,7 +53,11 @@ export async function POST(request) {
       to: TO_ADDRESS,
       replyTo: email,
       subject: `New intro call request from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message || "(none)"}`,
+      text:
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Wants app updates: ${appInterest ? "Yes" : "No"}\n\n` +
+        `Message:\n${message || "(none)"}`,
     });
     return Response.json({ ok: true });
   } catch (err) {

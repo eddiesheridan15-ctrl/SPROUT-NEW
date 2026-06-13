@@ -416,8 +416,8 @@ export default function Home() {
             <a href="#impact">Impact</a>
             <a href="#contact">Contact</a>
             <a href="#contact">Book Your Intro Call</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="/privacy">Privacy Policy</a>
+            <a href="/terms">Terms of Service</a>
           </div>
           <p className="em">eddiesheridan15@gmail.com</p>
           <p className="tg">

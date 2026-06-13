@@ -8,6 +8,7 @@ export default function BookingForm() {
     email: "",
     message: "",
     consent: false,
+    appInterest: false,
   });
 
   const update = (k) => (e) =>
@@ -28,8 +29,12 @@ export default function BookingForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (res.ok) setStatus("sent");
-      else setStatus("error");
+      if (res.ok) {
+        setStatus("sent");
+      } else {
+        const body = await res.json().catch(() => ({}));
+        setStatus(body.code === "no_key" ? "error-config" : "error");
+      }
     } catch {
       setStatus("error");
     }
@@ -88,7 +93,7 @@ export default function BookingForm() {
           <br />
           <span className="sm">
             We will only use your details to respond to you. See our{" "}
-            <a href="#" style={{ textDecoration: "underline" }}>
+            <a href="/privacy" style={{ textDecoration: "underline" }}>
               Privacy Policy
             </a>
             .
@@ -97,7 +102,11 @@ export default function BookingForm() {
       </label>
 
       <label className="consent" style={{ marginBottom: 30 }}>
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={form.appInterest}
+          onChange={update("appInterest")}
+        />
         <span>
           Keep me posted on the Sprout app. I&apos;d like to hear when it
           launches.
@@ -107,6 +116,13 @@ export default function BookingForm() {
       {status === "error-validation" && (
         <p style={{ color: "#b3261e", marginBottom: 20 }}>
           Please add your name, email, and tick the consent box.
+        </p>
+      )}
+      {status === "error-config" && (
+        <p style={{ color: "#b3261e", marginBottom: 20 }}>
+          Our booking email isn&apos;t live just yet. Please email
+          eddiesheridan15@gmail.com directly and we&apos;ll get straight back to
+          you.
         </p>
       )}
       {status === "error" && (
