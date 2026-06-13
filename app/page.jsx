@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Earth from "../components/Earth";
 import AppCarousel from "../components/AppCarousel";
 import BookingForm from "../components/BookingForm";
@@ -20,6 +20,8 @@ const Mark = () => (
 );
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const io = new IntersectionObserver(
       (es) =>
@@ -90,6 +92,25 @@ export default function Home() {
               Book Your Intro Call
             </a>
           </div>
+          <button
+            className={`nav-toggle${menuOpen ? " open" : ""}`}
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
+        <div className={`mobile-menu${menuOpen ? " open" : ""}`}>
+          <a href="#how" onClick={() => setMenuOpen(false)}>How It Works</a>
+          <a href="#impact" onClick={() => setMenuOpen(false)}>Impact</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <a href="#contact" className="btn" onClick={() => setMenuOpen(false)}>
+            <span className="dot" />
+            Book Your Intro Call
+          </a>
         </div>
       </nav>
 

@@ -60,6 +60,21 @@ nav.on-dark .nav-links .btn{background:var(--green-deep)}
 .btn .dot{width:7px;height:7px;border-radius:50%;background:var(--green-mid)}
 .btn-lg{font-size:19px;padding:21px 44px}
 
+/* MOBILE NAV: hamburger + dropdown menu */
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;background:none;border:none;cursor:pointer;padding:9px;flex-shrink:0}
+.nav-toggle span{display:block;width:100%;height:2px;border-radius:2px;background:var(--green-deep);transition:transform .3s,opacity .25s}
+nav.on-dark .nav-toggle span{background:#eaf3ec}
+.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;flex-direction:column;gap:6px;padding:0 22px;max-height:0;overflow:hidden;background:rgba(244,243,238,.97);backdrop-filter:blur(14px);transition:max-height .35s ease,padding .35s ease}
+nav.on-dark .mobile-menu{background:rgba(12,26,16,.92)}
+.mobile-menu.open{max-height:360px;padding:8px 22px 22px}
+.mobile-menu a:not(.btn){font-family:var(--head);font-weight:600;font-size:17px;color:var(--green-deep);padding:12px 4px;border-bottom:1px solid rgba(0,0,0,.06)}
+nav.on-dark .mobile-menu a:not(.btn){color:#eaf3ec;border-bottom-color:rgba(255,255,255,.08)}
+.mobile-menu .btn{margin-top:14px;justify-content:center;color:#fff!important;background:var(--green-deep)}
+.mobile-menu .btn .dot{background:var(--green-mid)}
+
 /* HERO */
 #globe{position:fixed;inset:0;z-index:1;pointer-events:none}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(120% 90% at 50% 0%,#102a18 0%,#0c1a10 55%,#0a160d 100%);color:#f3f5f1;padding:120px 0 80px;overflow:hidden}
@@ -225,7 +240,9 @@ footer .tg{color:var(--muted);font-size:15px}
 
 @media(max-width:880px){
   .container,.nav-in{padding:0 22px}
-  .nav-links a:not(.btn-nav){display:none}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .mobile-menu{display:flex}
   .frame{grid-template-columns:1fr}
   .frame .left{min-height:380px}
   .hero-foot{flex-direction:column;align-items:flex-start}
@@ -235,6 +252,66 @@ footer .tg{color:var(--muted);font-size:15px}
   .lb-name{font-size:14px}
   .lb-row{grid-template-columns:26px 1fr 74px;gap:10px}
   .li-card{width:100%}
+}
+
+/* ===== PHONE PASS (<=600px) ===== */
+@media(max-width:600px){
+  .container,.nav-in{padding:0 18px}
+  section{padding:84px 0}
+  #how{padding-top:96px}
+
+  /* headings: lower the floors so nothing overflows */
+  .hero h1{font-size:clamp(38px,12vw,60px);letter-spacing:-.035em}
+  h2{font-size:clamp(30px,8vw,46px)}
+  .lead-p{font-size:18px;margin-top:12px}
+  .hero-foot .lead{font-size:18px}
+  .hero{min-height:auto;padding:120px 0 72px}
+  .hero-side{max-width:none;margin-top:8px}
+  .micro{font-size:11px;letter-spacing:.2em}
+
+  /* hero stat tiles stack to a tidy row */
+  .hero-tiles{gap:10px;margin-top:36px}
+  .ht{padding:13px 16px;flex:1 1 100%}
+  .ht b{font-size:20px}
+
+  /* built diptych */
+  .frame .left{padding:44px 26px;min-height:300px}
+  .frame .right{padding:8px 26px}
+  .frame .item{padding:26px 0;grid-template-columns:40px 1fr}
+  .frame .item h3{font-size:21px}
+
+  /* leaderboard */
+  .lb{margin-top:44px;padding:20px 16px 22px}
+  .lb-row{height:62px}
+
+  /* verify grid single column */
+  .v-grid{grid-template-columns:1fr;gap:14px;margin-top:40px}
+  .v-tile{padding:22px 20px}
+
+  /* impact earth shorter on phones */
+  .iearth{height:380px;margin-top:48px}
+
+  /* pull quote */
+  .pull{padding-left:20px;margin-top:44px}
+
+  /* callout */
+  .callout{padding:30px 24px;gap:18px}
+  .callout h3{font-size:22px}
+  .callout .tick{font-size:16px}
+
+  /* form */
+  .form-head{margin-bottom:40px}
+  .form-head p{font-size:18px}
+  .field{padding:15px 16px;font-size:16px;margin-bottom:20px}
+
+  /* carousel head spacing */
+  .carousel-head{margin-bottom:32px}
+
+  /* footer links wrap tighter */
+  .foot-links{gap:18px 22px;font-size:14px}
+
+  /* plunge text */
+  .plunge-inner{padding:0 18px 36px}
 }
 
 @media(prefers-reduced-motion:reduce){
