@@ -236,7 +236,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section style={{ paddingTop: 0 }}>
+      <section style={{ paddingTop: 0, paddingBottom: 24 }}>
         <div className="container">
           <h2 className="carousel-head reveal">A look inside the app</h2>
           <AppCarousel />
