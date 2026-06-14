@@ -96,7 +96,7 @@ h2{font-size:clamp(38px,6vw,84px);font-weight:800;letter-spacing:-.035em}
 .eyebrow{display:flex;align-items:baseline;gap:16px;margin-bottom:26px}
 .eyebrow .num{font-family:var(--head);font-weight:600;font-size:13px;color:#a8aaa0;letter-spacing:.1em}
 
-#how{padding-top:170px}
+#how{padding-top:90px}
 
 /* ===== LIVE LEADERBOARD (How It Works) ===== */
 .lb{max-width:760px;margin-top:64px;background:var(--card);border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:28px 30px 30px;box-shadow:0 24px 60px rgba(13,42,23,.10)}
