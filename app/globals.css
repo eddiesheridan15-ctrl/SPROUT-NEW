@@ -510,3 +510,15 @@ footer .tg{color:var(--muted);font-size:15px}
 #leafhero .leaf-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#161c19 0%,#161c19 20%,rgba(22,28,25,.92) 34%,rgba(22,28,25,.55) 50%,rgba(22,28,25,.18) 66%,rgba(22,28,25,0) 82%)}
 /* Phone: text sits at the top, sprout lower, so darken top and bottom instead. */
 #leafhero .leaf-overlay.phone{background:linear-gradient(180deg,rgba(20,26,23,.66) 0%,rgba(20,26,23,.2) 28%,rgba(20,26,23,.32) 58%,rgba(20,26,23,.9) 100%)}
+
+/* ===== LIVE RACE desktop fix: keep the avatar centred on its position ===== */
+/* Above the mobile breakpoint, the run row is [avatar][label]. Centring the
+   whole row on left% pushed the avatar left of the mark, so the trail line
+   ended ahead of the circle. Anchor the avatar's CENTRE on left% and float the
+   label to its right so the label width no longer shifts the avatar. */
+@media(min-width:601px){
+  .nr-run{transform:translateY(-50%)}
+  .nr-av{margin-left:-22px}
+  .nr-tag{position:absolute;left:28px;top:50%;transform:translateY(-50%);white-space:nowrap}
+  .nr-chip{position:absolute;left:-22px;right:auto;top:-26px;transform:translateX(-50%)}
+}
