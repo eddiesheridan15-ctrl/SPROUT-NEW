@@ -58,8 +58,11 @@ export default function TermsPage() {
         The competition determines which of Sprout&rsquo;s vetted partners
         receives the donation; it does not determine whether the donation is made.
         Donations are directed to the chosen partner in accordance with our
-        partner arrangements. Sprout is not itself a registered charity unless
-        stated, and donations are not tax-deductible to participants.
+        partner arrangements. Sprout is a commercial provider, not a charity.
+        Some of our partners are Gift Aid registered charities and some are not.
+        The tax treatment of any donation is set out in the Order. Where a client
+        wishes to pursue Gift Aid, we can tailor the partner options for their
+        programme to include only Gift Aid registered charities.
       </p>
 
       <h2>4. Fees and payment</h2>
