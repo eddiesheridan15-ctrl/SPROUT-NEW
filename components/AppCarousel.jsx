@@ -27,17 +27,66 @@ export default function AppCarousel() {
   return isMobile ? <MobileCarousel /> : <DesktopCarousel />;
 }
 
-/* ===== DESKTOP: three-up windowed (unchanged behaviour) ===== */
+/* ===== DESKTOP: center-anchored sliding track, smooth, loops both ways ===== */
 function DesktopCarousel() {
-  const [start, setStart] = useState(0);
-  const [tilt, setTilt] = useState({ i: null, x: 0, y: 0 });
-  const perView = 3;
-  const maxStart = Math.max(0, SCREENS.length - perView);
+  const SLOT = 328; // image width (300) + gap (28)
+  const N = SCREENS.length;
+  // We render the strip with a set of clones on each side so the track can
+  // slide past either end and wrap seamlessly. `pos` is the logical position
+  // in the (cloned) strip; the real active index is pos wrapped into 0..N-1.
+  const CLONES = 3;
+  const [pos, setPos] = useState(0); // 0 = first real slide centered
+  const [animate, setAnimate] = useState(true);
+  const [tilt, setTilt] = useState({ key: null, x: 0, y: 0 });
+  const lockRef = useRef(false);
 
-  const prev = () => setStart((s) => Math.max(0, s - 1));
-  const next = () => setStart((s) => Math.min(maxStart, s + 1));
+  const active = ((pos % N) + N) % N;
 
-  const visible = SCREENS.slice(start, start + perView);
+  // Build the strip: [last CLONES] + [all] + [first CLONES]
+  const strip = [];
+  for (let k = -CLONES; k < N + CLONES; k++) {
+    const realIndex = ((k % N) + N) % N;
+    strip.push({ src: SCREENS[realIndex], realIndex, slot: k });
+  }
+
+  const go = (dir) => {
+    if (lockRef.current) return;
+    lockRef.current = true;
+    setAnimate(true);
+    setPos((p) => p + dir);
+    // release lock after the transition so clicks can't pile up and stutter
+    setTimeout(() => {
+      lockRef.current = false;
+    }, 460);
+  };
+  const prev = () => go(-1);
+  const next = () => go(1);
+
+  // When the animation lands on a cloned region (pos outside 0..N-1), silently
+  // snap back to the equivalent real position with animation off, so the loop
+  // is invisible.
+  useEffect(() => {
+    if (pos < 0 || pos >= N) {
+      const t = setTimeout(() => {
+        setAnimate(false);
+        setPos(((pos % N) + N) % N);
+      }, 470);
+      return () => clearTimeout(t);
+    }
+  }, [pos, N]);
+
+  // Re-enable animation on the next frame after a silent snap.
+  useEffect(() => {
+    if (!animate) {
+      const r = requestAnimationFrame(() => setAnimate(true));
+      return () => cancelAnimationFrame(r);
+    }
+  }, [animate]);
+
+  // translateX so the current pos sits dead center. The strip's first element
+  // is at slot -CLONES, so the element at logical slot `pos` is at offset
+  // (pos + CLONES) from the strip start.
+  const trackX = -(pos + CLONES + 0.5) * SLOT;
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -50,56 +99,109 @@ function DesktopCarousel() {
           position: "relative",
         }}
       >
-        <button onClick={prev} aria-label="Previous" style={arrowStyle} disabled={start === 0}>
+        <button onClick={prev} aria-label="Previous" style={arrowStyle}>
           ‹
         </button>
 
-        <div style={{ display: "flex", gap: 24, justifyContent: "center", alignItems: "center" }}>
-          {visible.map((src, i) => {
-            const isCenter = i === 1;
-            const active = tilt.i === i;
-            return (
-              <img
-                key={src}
-                src={src}
-                alt="Sprout app screen"
-                onMouseMove={(e) => {
-                  const r = e.currentTarget.getBoundingClientRect();
-                  setTilt({
-                    i,
-                    x: (e.clientX - r.left) / r.width - 0.5,
-                    y: (e.clientY - r.top) / r.height - 0.5,
-                  });
-                }}
-                onMouseLeave={() => setTilt({ i: null, x: 0, y: 0 })}
-                style={{
-                  width: 300,
-                  height: "auto",
-                  display: "block",
-                  flexShrink: 0,
-                  transform: `perspective(900px) scale(${isCenter ? 1 : 0.88}) rotateY(${
-                    active ? (tilt.x * 10).toFixed(2) : 0
-                  }deg) rotateX(${active ? (-tilt.y * 8).toFixed(2) : 0}deg)`,
-                  transition: active ? "transform 0.08s ease-out" : "transform 0.5s ease",
-                  willChange: "transform",
-                  zIndex: isCenter ? 2 : 1,
-                  filter: isCenter ? "none" : "saturate(0.92) brightness(0.98)",
-                }}
-              />
-            );
-          })}
+        <div
+          style={{
+            position: "relative",
+            width: SLOT * 3,
+            height: 640,
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: "50%",
+              display: "flex",
+              alignItems: "center",
+              transform: `translateX(${trackX}px)`,
+              transition: animate
+                ? "transform 0.46s cubic-bezier(0.22,1,0.36,1)"
+                : "none",
+              willChange: "transform",
+            }}
+          >
+            {strip.map((item) => {
+              const isCenter = item.slot === pos;
+              const key = item.slot;
+              const activeTilt = tilt.key === key;
+              return (
+                <div
+                  key={key}
+                  style={{
+                    width: SLOT,
+                    flexShrink: 0,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <img
+                    src={item.src}
+                    alt="Sprout app screen"
+                    draggable={false}
+                    onMouseMove={(e) => {
+                      if (!isCenter) return;
+                      const r = e.currentTarget.getBoundingClientRect();
+                      setTilt({
+                        key,
+                        x: (e.clientX - r.left) / r.width - 0.5,
+                        y: (e.clientY - r.top) / r.height - 0.5,
+                      });
+                    }}
+                    onMouseLeave={() => setTilt({ key: null, x: 0, y: 0 })}
+                    style={{
+                      width: 300,
+                      height: "auto",
+                      display: "block",
+                      transform: `perspective(900px) scale(${
+                        isCenter ? 1 : 0.84
+                      }) rotateY(${
+                        activeTilt ? (tilt.x * 10).toFixed(2) : 0
+                      }deg) rotateX(${
+                        activeTilt ? (-tilt.y * 8).toFixed(2) : 0
+                      }deg)`,
+                      transition: activeTilt
+                        ? "transform 0.08s ease-out"
+                        : "transform 0.46s cubic-bezier(0.22,1,0.36,1)",
+                      willChange: "transform",
+                      filter: isCenter
+                        ? "none"
+                        : "saturate(0.9) brightness(0.96)",
+                      opacity: isCenter ? 1 : 0.78,
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
 
-        <button onClick={next} aria-label="Next" style={arrowStyle} disabled={start === maxStart}>
+        <button onClick={next} aria-label="Next" style={arrowStyle}>
           ›
         </button>
       </div>
 
-      <div style={{ display: "flex", gap: 10, justifyContent: "center", marginTop: 36 }}>
-        {Array.from({ length: maxStart + 1 }).map((_, i) => (
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          justifyContent: "center",
+          marginTop: 28,
+        }}
+      >
+        {SCREENS.map((_, i) => (
           <button
             key={i}
-            onClick={() => setStart(i)}
+            onClick={() => {
+              if (lockRef.current) return;
+              setAnimate(true);
+              setPos(i);
+            }}
             aria-label={`Go to slide ${i + 1}`}
             style={{
               width: 10,
@@ -107,7 +209,9 @@ function DesktopCarousel() {
               borderRadius: "50%",
               border: "none",
               cursor: "pointer",
-              background: i === start ? "var(--green-deep)" : "rgba(0,0,0,0.18)",
+              background:
+                i === active ? "var(--green-deep)" : "rgba(0,0,0,0.18)",
+              transition: "background 0.3s ease",
             }}
           />
         ))}
