@@ -3,24 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Hero background: a full-bleed macro sprout photo.
+ * Hero background: a full-bleed macro sprout photo with a scroll-linked
+ * "pan down" motion. As you scroll, the image pans upward so more of the lower
+ * stem is revealed, like scrolling down through the photo. The motion is driven
+ * by scrollY (not by a fixed position), which also smooths out the mobile
+ * URL-bar jump, since the image is meant to move.
  *
- * The photo is an <img> sized to MORE THAN cover the viewport, then translated
- * and scaled so the sprout sits in the tuned position. We oversize on purpose
- * so panning the image never exposes a bare edge of the page behind it.
+ * The pan distance is clamped per device to the available vertical overflow so
+ * it never pulls the image off an edge and exposes the dark backing.
  *
- * Desktop and phone get independent crops. The handler only recomputes when
- * the viewport WIDTH changes, not the height, because mobile browsers change
- * innerHeight as the URL bar shows/hides while scrolling, and recomputing on
- * that would make the image visibly rescale mid-scroll.
- *
- * Tuned values:
+ * Tuned crop:
  *   desktop: x=13  y=9   zoom=100%
  *   phone:   x=3   y=-3  zoom=138%
  */
 const CROP = {
-  desktop: { x: 13, y: 9, zoom: 1.0 },
-  phone: { x: 3, y: -3, zoom: 1.38 },
+  desktop: { x: 13, y: 9, zoom: 1.0, pan: 0.34 },
+  phone: { x: 3, y: -3, zoom: 1.38, pan: 0.13 },
 };
 
 const IMG_W = 2786;
@@ -29,16 +27,15 @@ const IMG_H = 3482;
 export default function LeafHero() {
   const imgRef = useRef(null);
   const [isPhone, setIsPhone] = useState(false);
+  const cfg = useRef(null); // cached layout numbers
   const lastW = useRef(0);
 
   useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
 
-    const layout = () => {
+    const measure = () => {
       const vw = window.innerWidth;
-      // Use the LARGER of the visual viewport and the window for height so a
-      // hidden/shown mobile URL bar never shrinks our coverage.
       const vh = Math.max(
         window.innerHeight,
         document.documentElement.clientHeight || 0
@@ -47,7 +44,6 @@ export default function LeafHero() {
       setIsPhone(phone);
       const c = phone ? CROP.phone : CROP.desktop;
 
-      // Base cover size.
       const ar = IMG_W / IMG_H;
       let w, h;
       if (vw / vh > ar) {
@@ -57,46 +53,60 @@ export default function LeafHero() {
         h = vh;
         w = vh * ar;
       }
+      h *= c.zoom;
+      w *= c.zoom;
 
-      // Oversize so the translate (and any zoom < 1) can never expose an edge.
-      // The translate is at most |x|% of width and |y|% of height; pad by twice
-      // the largest translate plus a safety margin, divided by zoom.
-      const padX = (Math.abs(c.x) / 100) * vw * 2 + 80;
-      const padY = (Math.abs(c.y) / 100) * vh * 2 + 80;
-      w = (w + padX) / Math.min(c.zoom, 1);
-      h = (h + padY) / Math.min(c.zoom, 1);
+      const baseTx = (c.x / 100) * vw;
+      const baseTy = (c.y / 100) * vh;
 
-      img.style.width = w + "px";
-      img.style.height = h + "px";
+      // Max distance we can pan UP before the bottom edge would show.
+      const halfOverflowY = (h - vh) / 2;
+      const maxPan = Math.max(0, halfOverflowY - Math.abs(baseTy) - 16);
+      // Desired pan from the per-device factor, capped to what's safe.
+      const panDist = Math.min(c.pan * vh, maxPan);
 
-      const tx = (c.x / 100) * vw;
-      const ty = (c.y / 100) * vh;
+      img.style.width = w / c.zoom + "px";
+      img.style.height = h / c.zoom + "px";
+
+      cfg.current = { vh, baseTx, baseTy, zoom: c.zoom, panDist };
+    };
+
+    const apply = () => {
+      const k = cfg.current;
+      if (!k) return;
+      const p = Math.min(1, Math.max(0, window.scrollY / k.vh));
+      const ty = k.baseTy - p * k.panDist; // pan up as you scroll
       img.style.transform =
         "translate(calc(-50% + " +
-        tx +
+        k.baseTx +
         "px), calc(-50% + " +
         ty +
         "px)) scale(" +
-        c.zoom +
+        k.zoom +
         ")";
     };
 
-    // First paint.
     lastW.current = window.innerWidth;
-    layout();
+    measure();
+    apply();
 
-    // Only relayout when the WIDTH actually changes (orientation change, window
-    // resize on desktop). Ignore height-only changes from the mobile URL bar.
+    const onScroll = () => apply();
     const onResize = () => {
+      // Only re-measure on width change (ignore mobile URL-bar height jitter).
       if (window.innerWidth === lastW.current) return;
       lastW.current = window.innerWidth;
-      layout();
+      measure();
+      apply();
     };
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", layout);
+    window.addEventListener("orientationchange", () => {
+      measure();
+      apply();
+    });
     return () => {
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", layout);
     };
   }, []);
 
