@@ -5,13 +5,14 @@ import { useEffect, useRef, useState } from "react";
 /**
  * Hero background: a full-bleed macro sprout photo.
  *
- * DESKTOP: a gentle scroll-linked "pan down" so the image drifts as you scroll
- * (the sprout reveals more of the lower stem). Clamped to the available
- * vertical overflow so it never exposes an edge.
+ * DESKTOP: vertically centered, with a gentle scroll-linked "pan down" so the
+ * image drifts as you scroll. Clamped so it never exposes an edge.
  *
- * PHONE: completely still. Mobile browsers move the image around when the URL
- * bar shows/hides, and scroll-linked motion there felt wrong, so on phones we
- * lock it and only react to real width changes (not URL-bar height jitter).
+ * PHONE: completely still. The image is TOP-ANCHORED (pinned to the top of the
+ * fixed layer, no vertical centering). This matters because mobile browsers
+ * grow/shrink the viewport as the URL bar hides/shows on the first scroll; a
+ * vertically-centered fixed element gets re-centered and appears to drift down.
+ * Pinning the top removes the moving reference point, so it stays put.
  *
  * Tuned crop:
  *   desktop: x=13  y=9   zoom=100%
@@ -37,6 +38,8 @@ export default function LeafHero() {
 
     const measure = () => {
       const vw = window.innerWidth;
+      // Use the largest stable height so a hidden/shown URL bar never shrinks
+      // coverage.
       const vh = Math.max(
         window.innerHeight,
         document.documentElement.clientHeight || 0
@@ -59,7 +62,7 @@ export default function LeafHero() {
       const baseTx = (c.x / 100) * vw;
       const baseTy = (c.y / 100) * vh;
 
-      // Max safe pan up before the bottom edge would show.
+      // Max safe pan up before the bottom edge would show (desktop only).
       const halfOverflowY = (scaledH - vh) / 2;
       const maxPan = Math.max(0, halfOverflowY - Math.abs(baseTy) - 16);
       const panDist = Math.min(c.pan * vh, maxPan);
@@ -67,8 +70,31 @@ export default function LeafHero() {
       img.style.width = w + "px";
       img.style.height = h + "px";
 
+      if (phone) {
+        // TOP-ANCHORED: pin to top:0, no vertical centering. We still center
+        // horizontally and apply the tuned x/zoom. Because there is no vertical
+        // %-based centering, the URL bar moving cannot shift it.
+        // Vertical position: start from the top, then nudge by baseTy so the
+        // tuned crop still lands right. We bias upward so the lower stem fills
+        // the visible area as the URL bar retracts.
+        const vShift = -((scaledH - vh) / 2) + baseTy;
+        img.style.top = "0px";
+        img.style.transform =
+          "translateX(calc(-50% + " +
+          baseTx +
+          "px)) translateY(" +
+          vShift +
+          "px) scale(" +
+          c.zoom +
+          ")";
+        img.style.transformOrigin = "top center";
+      } else {
+        img.style.top = "50%";
+        img.style.transformOrigin = "center";
+      }
+
       cfg.current = { vh, baseTx, baseTy, zoom: c.zoom, panDist, phone };
-      placeStill();
+      if (!phone) placeStill();
     };
 
     const placeStill = () => {
@@ -105,7 +131,9 @@ export default function LeafHero() {
 
     const onScroll = () => applyScroll();
     const onResize = () => {
-      if (window.innerWidth === lastW.current) return; // ignore URL-bar jitter
+      // Only re-measure on a real width change (orientation flip, desktop
+      // resize). Ignore height-only changes from the mobile URL bar.
+      if (window.innerWidth === lastW.current) return;
       lastW.current = window.innerWidth;
       measure();
       applyScroll();
