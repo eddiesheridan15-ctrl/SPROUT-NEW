@@ -39,6 +39,8 @@ export default function LegalShell({ title, updated, children }) {
           <a href="/privacy">Privacy Policy</a>
           <span className="legal-dot">&middot;</span>
           <a href="/terms">Terms of Service</a>
+          <span className="legal-dot">&middot;</span>
+          <a href="/dpa">Data Processing Agreement</a>
         </p>
       </footer>
     </div>
