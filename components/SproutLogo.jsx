@@ -56,7 +56,7 @@ export default function SproutLogo({ size = 40, showWordmark = true, mono = fals
               marginTop: 3,
             }}
           >
-            Saving the Planet One Upload at a Time
+            Bring your team together. Leave the planet better.
           </span>
         </span>
       )}

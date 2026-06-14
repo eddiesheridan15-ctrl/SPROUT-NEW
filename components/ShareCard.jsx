@@ -41,7 +41,7 @@ const POSTS = [
     role: "Marketing Lead · GreenCo",
     body: (
       <>
-        Marketing logged 8,000+ small actions this month and turned it into a
+        Marketing logged 2,750+ small actions this month and turned it into a
         guaranteed donation. Beat Finance by 40 points too. &#128527;{" "}
         <b>This is how you do team-building.</b>
       </>

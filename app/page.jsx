@@ -80,7 +80,7 @@ export default function Home() {
             <span>
               <span className="name">SPROUT</span>
               <br />
-              <span className="tag">Saving the Planet One Upload at a Time</span>
+              <span className="tag">Bring your team together. Leave the planet better.</span>
             </span>
           </div>
           <div className="nav-links">
@@ -414,7 +414,7 @@ export default function Home() {
             <span>
               <span className="name">SPROUT</span>
               <br />
-              <span className="tag">Saving the Planet One Upload at a Time</span>
+              <span className="tag">Bring your team together. Leave the planet better.</span>
             </span>
           </div>
           <div className="foot-links">
@@ -428,7 +428,7 @@ export default function Home() {
           </div>
           <p className="em">eddiesheridan15@gmail.com</p>
           <p className="tg">
-            Sprout. Saving the Planet&apos;s Resources, One Upload at a Time.
+            Sprout. Bring your team together. Leave the planet better.
           </p>
         </div>
       </footer>

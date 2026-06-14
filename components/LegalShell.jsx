@@ -33,7 +33,7 @@ export default function LegalShell({ title, updated, children }) {
 
       <footer className="legal-foot">
         <p>
-          Sprout. Saving the Planet&rsquo;s Resources, One Upload at a Time.
+          Sprout. Bring your team together. Leave the planet better.
         </p>
         <p>
           <a href="/privacy">Privacy Policy</a>
