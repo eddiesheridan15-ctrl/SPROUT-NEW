@@ -228,7 +228,7 @@ label.fl{display:block;font-family:var(--head);font-weight:600;margin-bottom:10p
 .dots button.active{background:var(--green-deep);transform:scale(1.2)}
 
 /* FOOTER */
-footer{border-top:1px solid rgba(0,0,0,.07);padding:72px 0;text-align:center}
+footer{position:relative;z-index:2;background:var(--cream);border-top:1px solid rgba(0,0,0,.07);padding:72px 0;text-align:center}
 .foot-links{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin:26px 0 22px;font-family:var(--head);font-weight:600;font-size:15px}
 footer .em{color:var(--muted);margin-bottom:8px}
 footer .tg{color:var(--muted);font-size:15px}
