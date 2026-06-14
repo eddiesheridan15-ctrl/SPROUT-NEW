@@ -502,9 +502,11 @@ footer .tg{color:var(--muted);font-size:15px}
    is an <img> sized to cover the viewport in JS, then translated/scaled so the
    sprout sits in the tuned position (desktop and phone independently). The
    overlay darkens for headline legibility. */
-#leafhero{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+#leafhero{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;background:#161c19}
 #leafhero .leaf-photo{position:absolute;top:50%;left:50%;max-width:none;will-change:transform}
-/* Desktop: darken the left so the headline reads, keep the sprout (right) bright. */
-#leafhero .leaf-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,18,12,.94) 0%,rgba(8,18,12,.82) 30%,rgba(8,18,12,.42) 58%,rgba(8,18,12,.06) 100%)}
+/* Desktop: the left third is SOLID dark (matching the bar) then fades to clear
+   across the middle, so the photo's left edge dissolves into the bar and the lit
+   sprout on the right reads as the focal point. */
+#leafhero .leaf-overlay{position:absolute;inset:0;background:linear-gradient(90deg,#161c19 0%,#161c19 20%,rgba(22,28,25,.92) 34%,rgba(22,28,25,.55) 50%,rgba(22,28,25,.18) 66%,rgba(22,28,25,0) 82%)}
 /* Phone: text sits at the top, sprout lower, so darken top and bottom instead. */
-#leafhero .leaf-overlay.phone{background:linear-gradient(180deg,rgba(8,18,12,.62) 0%,rgba(8,18,12,.18) 28%,rgba(8,18,12,.30) 58%,rgba(8,18,12,.9) 100%)}
+#leafhero .leaf-overlay.phone{background:linear-gradient(180deg,rgba(20,26,23,.66) 0%,rgba(20,26,23,.2) 28%,rgba(20,26,23,.32) 58%,rgba(20,26,23,.9) 100%)}
