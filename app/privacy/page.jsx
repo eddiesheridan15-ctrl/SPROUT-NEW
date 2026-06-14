@@ -181,8 +181,9 @@ export default function PrivacyPage() {
 
       <h2>12. Contact</h2>
       <p>
-        For any privacy question or to exercise your rights, contact us at{" "}
-        <a href="mailto:eddiesheridan15@gmail.com">eddiesheridan15@gmail.com</a>.
+        For any privacy question or to exercise your rights, contact us via{" "}
+        the contact form on our website. A dedicated contact email will be
+        added here on incorporation.
       </p>
     </LegalShell>
   );

@@ -426,7 +426,6 @@ export default function Home() {
             <a href="/terms">Terms of Service</a>
             <a href="/dpa">Data Processing Agreement</a>
           </div>
-          <p className="em">eddiesheridan15@gmail.com</p>
           <p className="tg">
             Sprout. Bring your team together. Leave the planet better.
           </p>

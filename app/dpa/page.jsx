@@ -171,8 +171,9 @@ export default function DpaPage() {
 
       <h2>12. Contact</h2>
       <p>
-        Questions about this DPA can be sent to{" "}
-        <a href="mailto:eddiesheridan15@gmail.com">eddiesheridan15@gmail.com</a>.
+        Questions about this DPA can be sent via{" "}
+        the contact form on our website. A dedicated contact email will be
+        added here on incorporation.
       </p>
     </LegalShell>
   );

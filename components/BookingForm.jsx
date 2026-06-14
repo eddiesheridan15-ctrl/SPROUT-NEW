@@ -120,15 +120,13 @@ export default function BookingForm() {
       )}
       {status === "error-config" && (
         <p style={{ color: "#b3261e", marginBottom: 20 }}>
-          Our booking email isn&apos;t live just yet. Please email
-          eddiesheridan15@gmail.com directly and we&apos;ll get straight back to
-          you.
+          We couldn&apos;t submit that just now. Please try again in a
+          moment, and we&apos;ll be in touch as soon as it comes through.
         </p>
       )}
       {status === "error" && (
         <p style={{ color: "#b3261e", marginBottom: 20 }}>
-          Something went wrong sending that. Please try again or email
-          eddiesheridan15@gmail.com.
+          Something went wrong sending that. Please try again in a moment.
         </p>
       )}
 
