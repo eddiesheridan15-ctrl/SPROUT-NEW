@@ -312,17 +312,19 @@ export default function Home() {
       {/* SHARE LOOP (film section returns here post-launch) */}
       <section style={{ paddingTop: 88 }}>
         <div className="container">
-          <h2 className="reveal" style={{ maxWidth: "20ch" }}>
-            You walk away with something worth sharing.
-          </h2>
           <div className="share-row">
-            <p className="lead-p reveal share-copy" style={{ marginBottom: 0 }}>
-              When the donation lands, your people do the telling. Real posts
-              from real employees: the team&apos;s win, the project it funded,
-              the company that made it happen. A culture moment your people
-              remember and a values story your company can actually show, not
-              just claim.
-            </p>
+            <div className="share-copy">
+              <div className="share-eyebrow reveal">[&nbsp;&nbsp;The proof&nbsp;&nbsp;]</div>
+              <h2 className="reveal" style={{ maxWidth: "15ch" }}>
+                You walk away with something worth sharing.
+              </h2>
+              <p className="lead-p reveal" style={{ marginBottom: 0 }}>
+                When the donation lands, your people do the telling. Real posts
+                from real employees: the team&apos;s win, the project it funded,
+                the company that made it happen. A values story your company can
+                actually show, not just claim.
+              </p>
+            </div>
             <div className="share-card-col">
               <ShareCard />
             </div>

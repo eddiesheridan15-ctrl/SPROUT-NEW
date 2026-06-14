@@ -147,10 +147,14 @@ h2{font-size:clamp(38px,6vw,84px);font-weight:800;letter-spacing:-.035em}
 .film .cap{font-family:var(--head);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#7fa98c}
 
 /* ===== SHARE CARD (replaces film pre-launch) ===== */
-.li-stage{position:relative;display:flex;justify-content:center;padding:64px 0 40px}
-.li-stage::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(43,180,95,.14),transparent 65%);pointer-events:none}
-.li-card{position:relative;width:min(540px,100%);background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:12px;box-shadow:0 30px 80px rgba(13,42,23,.18);overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;animation:cardFloat 7s ease-in-out infinite;transition:transform .4s ease,box-shadow .4s ease}
-.li-card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 42px 100px rgba(13,42,23,.24)}
+.li-stage{position:relative;display:flex;justify-content:center;padding:20px 0}
+.li-cascade{position:relative;width:560px;height:760px}
+.li-cascade .li-card{position:absolute;width:260px}
+.li-pos-back{top:0;left:0;transform:rotate(-4deg);z-index:1}
+.li-pos-mid{top:165px;left:135px;transform:rotate(3deg);z-index:2}
+.li-pos-front{top:330px;left:280px;transform:rotate(-2deg);z-index:3}
+.li-cascade .li-card:hover{transform:translateY(-8px) rotate(0deg);z-index:4;box-shadow:0 42px 100px rgba(13,42,23,.28)}
+.li-card{position:relative;width:260px;background:#fff;border:1px solid rgba(0,0,0,.10);border-radius:13px;box-shadow:0 20px 50px rgba(13,42,23,.18);overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;transition:transform .35s ease,box-shadow .35s ease}
 @keyframes cardFloat{0%,100%{transform:translateY(0) rotate(.4deg)}50%{transform:translateY(-12px) rotate(-.4deg)}}
 .li-top{display:flex;align-items:flex-start;gap:10px;padding:16px 16px 0}
 .li-avatar{width:48px;height:48px;border-radius:50%;background:#5e3aa6;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
@@ -524,17 +528,46 @@ footer .tg{color:var(--muted);font-size:15px}
 }
 
 /* ===== SHARE LOOP: paragraph left, LinkedIn card right (desktop) ===== */
-.share-row{display:flex;align-items:center;gap:48px;margin-top:48px}
-.share-row .share-copy{flex:1 1 0;max-width:430px;margin:0}
-.share-row .share-card-col{flex:1 1 0;display:flex;justify-content:flex-end;padding-right:60px}
-/* shrink the card and tighten its glow padding inside the column */
-.share-card-col .li-stage{padding:0;justify-content:flex-end}
-.share-card-col .li-stage::before{width:320px;height:320px}
-.share-card-col .li-card{width:min(300px,100%)}
+.share-row{display:grid;grid-template-columns:0.95fr 1.05fr;gap:30px;align-items:center;margin-top:36px;min-height:760px}
+.share-row > *{min-width:0}
+.share-row .share-copy{max-width:430px;margin:0}
+.share-row .share-card-col{display:flex;justify-content:center;align-items:center}
 @media(max-width:880px){
-  .share-row{flex-direction:column;align-items:stretch;gap:8px;margin-top:20px}
+  .share-row{grid-template-columns:1fr;gap:12px;margin-top:20px;min-height:0}
+  .share-row > *{min-width:0}
   .share-row .share-copy{max-width:none;margin:0}
-  .share-row .share-card-col{width:100%;padding-right:0;margin-top:8px;justify-content:center}
-  .share-card-col .li-card{width:min(540px,100%)}
-  .share-card-col .li-stage::before{width:560px;height:560px}
+  .share-row .share-card-col{width:100%;margin-top:8px;justify-content:center}
+}
+
+.share-eyebrow{font-family:var(--head);font-weight:800;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#1f8f4e;margin-bottom:22px}
+.share-row .share-copy h2{max-width:15ch;margin-bottom:20px}
+.share-row .share-copy .lead-p{max-width:440px}
+/* ===== SHARE CASCADE: compact card sizing + red exclamation reaction ===== */
+.li-cascade .li-top{padding:12px 12px 0;gap:8px}
+.li-cascade .li-avatar{width:38px;height:38px;font-size:12px}
+.li-cascade .li-name{font-size:12.5px;gap:5px}
+.li-cascade .li-badge{width:14px;height:14px;font-size:8px}
+.li-cascade .li-role{font-size:10.5px}
+.li-cascade .li-meta{font-size:10.5px}
+.li-cascade .li-more{font-size:16px}
+.li-cascade .li-body{padding:7px 12px 0;font-size:12px;line-height:1.42}
+.li-cascade .li-body p{margin:0 0 7px}
+.li-cascade .li-seemore{font-size:12px}
+.li-cascade .li-photo img{height:128px}
+.li-cascade .li-stats{padding:9px 12px;font-size:10.5px}
+.li-cascade .li-count{margin-left:6px}
+.li-cascade .li-actions{padding:4px 4px}
+.li-cascade .li-action{gap:4px;padding:8px 2px;font-size:11px}
+.li-cascade .li-ic{font-size:13px}
+/* red exclamation reaction bubble */
+.li-react-bang{background:#e23b3b;font-size:9px;color:#fff}
+
+/* Mobile: a diagonal cascade won't fit a phone. Collapse to the single front
+   card, centered and upright, hide the other two. */
+@media(max-width:880px){
+  .li-stage{padding:8px 0;display:block;width:100%}
+  .li-cascade{width:100%;max-width:100%;height:auto;display:block}
+  .li-cascade .li-card{position:static;width:100%;max-width:none;margin:0;transform:none}
+  .li-cascade .li-pos-back,.li-cascade .li-pos-mid{display:none}
+  .li-cascade .li-pos-front{box-shadow:0 24px 60px rgba(13,42,23,.2)}
 }
