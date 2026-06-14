@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import Earth from "../components/Earth";
+import LeafHero from "../components/LeafHero";
 import AppCarousel from "../components/AppCarousel";
 import BookingForm from "../components/BookingForm";
 import LiveLeaderboard from "../components/LiveLeaderboard";
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
       </nav>
 
-      <Earth />
+      <LeafHero />
 
       <header className="hero" id="top" data-nav="dark">
         <div className="stars" />

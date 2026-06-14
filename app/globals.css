@@ -79,7 +79,7 @@ nav.on-dark .mobile-menu a:not(.btn){color:#eaf3ec;border-bottom-color:rgba(255,
 
 /* HERO */
 #globe{position:fixed;inset:0;z-index:1;pointer-events:none}
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(120% 90% at 50% 0%,#102a18 0%,#0c1a10 55%,#0a160d 100%);color:#f3f5f1;padding:120px 0 80px;overflow:hidden}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,rgba(8,18,12,.92) 0%,rgba(8,18,12,.78) 32%,rgba(8,18,12,.34) 62%,rgba(8,18,12,.12) 100%);color:#f3f5f1;padding:120px 0 80px;overflow:hidden}
 .hero .stars{position:absolute;inset:0;z-index:0;opacity:.5;background-image:radial-gradient(1px 1px at 20% 30%,#fff,transparent),radial-gradient(1px 1px at 70% 20%,#fff,transparent),radial-gradient(1px 1px at 40% 70%,#fff,transparent),radial-gradient(1px 1px at 85% 60%,#fff,transparent),radial-gradient(1px 1px at 55% 45%,#fff,transparent),radial-gradient(1px 1px at 12% 80%,#fff,transparent),radial-gradient(1px 1px at 90% 88%,#fff,transparent)}
 .hero h1{font-size:clamp(54px,9.5vw,128px);font-weight:800;letter-spacing:-.045em;max-width:15ch;color:#fff;text-shadow:0 6px 40px rgba(0,0,0,.5)}
 .hero h1 .g{color:var(--green-mid)}
@@ -495,4 +495,18 @@ footer .tg{color:var(--muted);font-size:15px}
 @media(max-width:600px){
   .legal-body{padding:40px 20px 32px}
   .legal-top{padding:22px 20px}
+}
+
+/* ===== Hero leaf background layer (replaces the old globe) ===== */
+/* Fixed back layer, same stacking as the old #globe. The photo is anchored
+   to the right so the sprout/drop sit right-of-centre and the headline keeps
+   the darker left side. The synthetic falling-drop canvas sits on top. */
+#leafhero{position:fixed;inset:0;z-index:1;pointer-events:none}
+#leafhero .leaf-photo{position:absolute;inset:0;background-image:url("/leaf-hero.jpg");background-size:cover;background-position:right center;background-repeat:no-repeat}
+#leafhero #leaf-drop{position:absolute;inset:0;width:100%;height:100%}
+
+/* On phones the portrait photo already fills the screen; nudge the focal
+   point so the sprout and drop stay visible above the text block. */
+@media(max-width:600px){
+  #leafhero .leaf-photo{background-position:72% 18%}
 }
