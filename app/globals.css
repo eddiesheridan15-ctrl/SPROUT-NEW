@@ -524,13 +524,13 @@ footer .tg{color:var(--muted);font-size:15px}
 }
 
 /* ===== SHARE LOOP: paragraph left, LinkedIn card right (desktop) ===== */
-.share-row{display:flex;align-items:center;gap:56px;margin-top:28px}
-.share-row .share-copy{flex:1 1 0;max-width:440px;margin:0 auto}
-.share-row .share-card-col{flex:1 1 0;display:flex;justify-content:center}
+.share-row{display:flex;align-items:flex-start;gap:56px;margin-top:14px}
+.share-row .share-copy{flex:1 1 0;max-width:440px;margin:0}
+.share-row .share-card-col{flex:1 1 0;display:flex;justify-content:flex-end}
 /* shrink the card and tighten its glow padding inside the column */
-.share-card-col .li-stage{padding:24px 0;justify-content:center}
-.share-card-col .li-stage::before{width:380px;height:380px}
-.share-card-col .li-card{width:min(340px,100%)}
+.share-card-col .li-stage{padding:14px 0;justify-content:flex-end}
+.share-card-col .li-stage::before{width:340px;height:340px}
+.share-card-col .li-card{width:min(300px,100%)}
 @media(max-width:880px){
   .share-row{flex-direction:column;align-items:stretch;gap:8px;margin-top:20px}
   .share-row .share-copy{max-width:none;margin:0}
