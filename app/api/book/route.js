@@ -12,8 +12,8 @@ import { Resend } from "resend";
 //    change FROM_ADDRESS below.
 // ----------------------------------------------------------------
 
-const TO_ADDRESS = "eddiesheridan15@gmail.com";
-const FROM_ADDRESS = "Sprout Website <onboarding@resend.dev>";
+const TO_ADDRESS = "hello@renyu.co.uk";
+const FROM_ADDRESS = "Renyu Website <onboarding@resend.dev>";
 
 export async function POST(request) {
   let data;

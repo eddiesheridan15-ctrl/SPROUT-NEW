@@ -2,7 +2,7 @@
 
 /**
  * "The proof" cascade: three LinkedIn-style posts from different GreenCo
- * departments, all about the same 4-week Sprout competition. Desktop shows a
+ * departments, all about the same 4-week Renyu competition. Desktop shows a
  * diagonal cascade; mobile collapses to the single front card (see globals.css).
  */
 
@@ -68,7 +68,7 @@ const POSTS = [
       <>
         Four weeks ago I told our team at GreenCo we were starting a
         competition. Today we donated <b>9,500 trees</b> with the help of{" "}
-        <b>Sprout</b>. Half of them rolled their eyes at the start. Nobody is
+        <b>Renyu</b>. Half of them rolled their eyes at the start. Nobody is
         rolling them now. &#128580;
       </>
     ),

@@ -89,7 +89,7 @@ export default function BookingForm() {
           onChange={update("consent")}
         />
         <span>
-          I&apos;m happy for Sprout to contact me about my enquiry.
+          I&apos;m happy for Renyu to contact me about my enquiry.
           <br />
           <span className="sm">
             We will only use your details to respond to you. See our{" "}
@@ -108,7 +108,7 @@ export default function BookingForm() {
           onChange={update("appInterest")}
         />
         <span>
-          Keep me posted on the Sprout app. I&apos;d like to hear when it
+          Keep me posted on the Renyu app. I&apos;d like to hear when it
           launches.
         </span>
       </label>

@@ -1,24 +1,24 @@
 import LegalShell from "../../components/LegalShell";
 
 export const metadata = {
-  title: "Terms of Service, Sprout",
-  description: "The terms governing use of Sprout's website and programmes.",
+  title: "Terms of Service, Renyu",
+  description: "The terms governing use of Renyu's website and programmes.",
 };
 
 export default function TermsPage() {
   return (
     <LegalShell title="Terms of Service" updated="13 June 2026">
       <p>
-        These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the Sprout
+        These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the Renyu
         website, app and programmes (together, the &ldquo;Services&rdquo;)
-        provided by Sprout (&ldquo;Sprout&rdquo;, &ldquo;we&rdquo;,
+        provided by Renyu (&ldquo;Renyu&rdquo;, &ldquo;we&rdquo;,
         &ldquo;us&rdquo; or &ldquo;our&rdquo;). By using the Services you agree to
         these Terms. If you are agreeing on behalf of an organisation, you confirm
         you have authority to bind that organisation.
       </p>
       <p>
         <em>
-          Sprout is a trading name. Our registered company name and number will
+          Renyu is a trading name. Our registered company name and number will
           be added here on incorporation. These Terms are a starting framework
           and should be reviewed by a qualified legal adviser before a programme
           is sold.
@@ -27,12 +27,12 @@ export default function TermsPage() {
 
       <h2>1. The Services</h2>
       <p>
-        Sprout provides a four-week team engagement programme delivered through an
+        Renyu provides a four-week team engagement programme delivered through an
         app, in which participants log everyday environmental actions to earn
         points, climb leaderboards, and where the participating organisation makes
         a guaranteed donation to a verified environmental partner. Specific
         deliverables, fees and dates are set out in a separate order or written
-        agreement between Sprout and the organisation (the &ldquo;Order&rdquo;).
+        agreement between Renyu and the organisation (the &ldquo;Order&rdquo;).
         If an Order conflicts with these Terms, the Order prevails.
       </p>
 
@@ -55,10 +55,10 @@ export default function TermsPage() {
       <p>
         The donation amount is committed by the participating organisation as set
         out in the Order, and is guaranteed from the point the Order is signed.
-        The competition determines which of Sprout&rsquo;s vetted partners
+        The competition determines which of Renyu&rsquo;s vetted partners
         receives the donation; it does not determine whether the donation is made.
         Donations are directed to the chosen partner in accordance with our
-        partner arrangements. Sprout is a commercial provider, not a charity.
+        partner arrangements. Renyu is a commercial provider, not a charity.
         Some of our partners are Gift Aid registered charities and some are not.
         The tax treatment of any donation is set out in the Order. Where a client
         wishes to pursue Gift Aid, we can tailor the partner options for their
@@ -69,13 +69,13 @@ export default function TermsPage() {
       <p>
         Fees for a programme are set out in the Order. Unless stated otherwise,
         fees are exclusive of VAT, invoiced as described in the Order, and payable
-        within the period stated. The split between Sprout&rsquo;s service fee and
+        within the period stated. The split between Renyu&rsquo;s service fee and
         the donation element will be made clear in the Order.
       </p>
 
       <h2>5. Intellectual property</h2>
       <p>
-        Sprout and its licensors own all rights in the Services, including the
+        Renyu and its licensors own all rights in the Services, including the
         software, design, branding and content we provide. We grant the
         organisation and its participants a limited, non-exclusive,
         non-transferable right to use the Services for the duration of a
@@ -121,7 +121,7 @@ export default function TermsPage() {
       <h2>10. Data protection</h2>
       <p>
         Our handling of personal data is described in our{" "}
-        <a href="/privacy">Privacy Policy</a>. Where Sprout processes personal
+        <a href="/privacy">Privacy Policy</a>. Where Renyu processes personal
         data on behalf of an organisation, a separate data processing agreement
         applies.
       </p>

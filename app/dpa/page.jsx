@@ -1,9 +1,9 @@
 import LegalShell from "../../components/LegalShell";
 
 export const metadata = {
-  title: "Data Processing Agreement, Sprout",
+  title: "Data Processing Agreement, Renyu",
   description:
-    "The terms under which Sprout processes personal data on behalf of a customer organisation.",
+    "The terms under which Renyu processes personal data on behalf of a customer organisation.",
 };
 
 export default function DpaPage() {
@@ -11,16 +11,16 @@ export default function DpaPage() {
     <LegalShell title="Data Processing Agreement" updated="13 June 2026">
       <p>
         This Data Processing Agreement (&ldquo;DPA&rdquo;) forms part of the
-        agreement between Sprout (&ldquo;Sprout&rdquo;, &ldquo;Processor&rdquo;)
+        agreement between Renyu (&ldquo;Renyu&rdquo;, &ldquo;Processor&rdquo;)
         and the customer organisation (&ldquo;Customer&rdquo;,
-        &ldquo;Controller&rdquo;) that has agreed to run a Sprout programme (the
+        &ldquo;Controller&rdquo;) that has agreed to run a Renyu programme (the
         &ldquo;Order&rdquo;). It governs the processing of personal data carried
-        out by Sprout on the Customer&rsquo;s behalf, and is designed to meet the
+        out by Renyu on the Customer&rsquo;s behalf, and is designed to meet the
         requirements of Article 28 of the UK GDPR.
       </p>
       <p>
         <em>
-          Sprout is a trading name. Our registered company name and number will
+          Renyu is a trading name. Our registered company name and number will
           be added here on incorporation. This DPA is a working framework and
           should be reviewed by a qualified legal adviser before signature.
         </em>
@@ -38,17 +38,17 @@ export default function DpaPage() {
       <h2>2. Roles of the parties</h2>
       <p>
         For the personal data processed under a programme, the Customer is the
-        controller and Sprout is the processor. Sprout will process that personal
+        controller and Renyu is the processor. Renyu will process that personal
         data only on the Customer&rsquo;s documented instructions, including the
         instructions set out in this DPA and the Order, unless required to do
-        otherwise by law (in which case Sprout will inform the Customer first
+        otherwise by law (in which case Renyu will inform the Customer first
         where legally permitted).
       </p>
 
       <h2>3. Subject matter and details of processing</h2>
       <ul>
         <li>
-          <strong>Subject matter:</strong> delivery of a Sprout team engagement
+          <strong>Subject matter:</strong> delivery of a Renyu team engagement
           programme.
         </li>
         <li>
@@ -71,7 +71,7 @@ export default function DpaPage() {
         </li>
       </ul>
 
-      <h2>4. Sprout&rsquo;s obligations</h2>
+      <h2>4. Renyu&rsquo;s obligations</h2>
       <ul>
         <li>
           Process personal data only on documented instructions from the
@@ -108,11 +108,11 @@ export default function DpaPage() {
 
       <h2>5. Sub-processors</h2>
       <p>
-        The Customer gives general authorisation for Sprout to engage
+        The Customer gives general authorisation for Renyu to engage
         sub-processors (such as hosting, database, and email delivery providers)
-        to deliver the Services. Sprout will impose data protection obligations on
+        to deliver the Services. Renyu will impose data protection obligations on
         each sub-processor that are no less protective than those in this DPA, and
-        remains responsible to the Customer for their performance. Sprout will
+        remains responsible to the Customer for their performance. Renyu will
         give the Customer reasonable notice of any intended addition or replacement
         of a sub-processor, and the Customer may object on reasonable data
         protection grounds.
@@ -120,7 +120,7 @@ export default function DpaPage() {
 
       <h2>6. International transfers</h2>
       <p>
-        Sprout will not transfer personal data outside the UK except where an
+        Renyu will not transfer personal data outside the UK except where an
         adequacy decision applies or appropriate safeguards are in place (such as
         the UK International Data Transfer Agreement, or the UK Addendum to the EU
         Standard Contractual Clauses), and will inform the Customer of such
@@ -130,7 +130,7 @@ export default function DpaPage() {
       <h2>7. Security</h2>
       <p>
         Taking into account the state of the art, costs, and the nature, scope and
-        purposes of processing, Sprout will implement appropriate technical and
+        purposes of processing, Renyu will implement appropriate technical and
         organisational measures to ensure a level of security appropriate to the
         risk. These include access controls, encryption in transit, secured hosting
         and database infrastructure, and measures to restore availability after an
@@ -139,7 +139,7 @@ export default function DpaPage() {
 
       <h2>8. Personal data breaches</h2>
       <p>
-        Sprout will notify the Customer without undue delay after becoming aware of
+        Renyu will notify the Customer without undue delay after becoming aware of
         a personal data breach affecting the Customer&rsquo;s data, and will
         provide the information reasonably available to help the Customer meet its
         own breach notification obligations.
@@ -147,10 +147,10 @@ export default function DpaPage() {
 
       <h2>9. Data subject requests</h2>
       <p>
-        If Sprout receives a request from a data subject relating to the
+        If Renyu receives a request from a data subject relating to the
         Customer&rsquo;s data, it will direct the request to the Customer and will
         not respond directly except on the Customer&rsquo;s instructions or as
-        required by law. Sprout will provide reasonable assistance to enable the
+        required by law. Renyu will provide reasonable assistance to enable the
         Customer to respond.
       </p>
 
@@ -164,7 +164,7 @@ export default function DpaPage() {
       <h2>11. Term</h2>
       <p>
         This DPA takes effect when the Order is signed and continues for as long as
-        Sprout processes personal data on the Customer&rsquo;s behalf. Sections
+        Renyu processes personal data on the Customer&rsquo;s behalf. Sections
         intended to survive (including confidentiality and deletion or return of
         data) continue after it ends.
       </p>

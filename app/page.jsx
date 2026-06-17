@@ -8,15 +8,7 @@ import ShareCard from "../components/ShareCard";
 import ImpactEarth from "../components/ImpactEarth";
 
 const Mark = () => (
-  <svg viewBox="0 0 100 100">
-    <path
-      d="M64 38 C64 31 57 27 48 27 C39 27 32 32 32 40 C32 56 62 50 62 64 C62 72 54 75 46 75 C37 75 30 70 30 63"
-      fill="none"
-      stroke="#fff"
-      strokeWidth="11"
-      strokeLinecap="round"
-    />
-  </svg>
+  <img src="/renyu-badge.png" alt="RENYU" width="256" height="256" />
 );
 
 export default function Home() {
@@ -78,7 +70,7 @@ export default function Home() {
               <Mark />
             </span>
             <span>
-              <span className="name">SPROUT</span>
+              <span className="name">RENYU</span>
               <br />
               <span className="tag">Bring your team together. Leave the planet better.</span>
             </span>
@@ -251,7 +243,7 @@ export default function Home() {
           </div>
           <h2 className="reveal">Real effort. Real money. Real impact.</h2>
           <p className="lead-p reveal">
-            Every Sprout programme funds verified work on the ground through
+            Every Renyu programme funds verified work on the ground through
             partners we have vetted ourselves: reforestation, wildlife
             conservation, and ocean and river cleanup. We only work with
             projects that have multi-year monitoring and certified results, so
@@ -412,7 +404,7 @@ export default function Home() {
               <Mark />
             </span>
             <span>
-              <span className="name">SPROUT</span>
+              <span className="name">RENYU</span>
               <br />
               <span className="tag">Bring your team together. Leave the planet better.</span>
             </span>
@@ -427,7 +419,7 @@ export default function Home() {
             <a href="/dpa">Data Processing Agreement</a>
           </div>
           <p className="tg">
-            Sprout. Bring your team together. Leave the planet better.
+            Renyu. Bring your team together. Leave the planet better.
           </p>
         </div>
       </footer>

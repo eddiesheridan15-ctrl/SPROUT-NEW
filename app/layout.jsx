@@ -1,26 +1,26 @@
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL("https://sprout-new.vercel.app"),
-  title: "Sprout, Real team-building. Real environmental impact.",
+  metadataBase: new URL("https://renyu.co.uk"),
+  title: "RENYU, Bring your team together. Leave the planet better.",
   description:
     "A friendly four-week team competition that turns everyday actions into real environmental impact, and ends with a guaranteed donation to a verified conservation project.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/renyu-appicon.png",
   },
   openGraph: {
-    title: "Sprout, Real team-building. Real environmental impact.",
+    title: "RENYU, Bring your team together. Leave the planet better.",
     description:
       "A four-week team competition that turns everyday actions into real environmental impact, ending with a guaranteed donation to a verified conservation project.",
-    url: "https://sprout-new.vercel.app",
-    siteName: "Sprout",
+    url: "https://renyu.co.uk",
+    siteName: "RENYU",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sprout, Real team-building. Real environmental impact.",
+    title: "RENYU, Bring your team together. Leave the planet better.",
     description:
       "A four-week team competition that turns everyday actions into real environmental impact.",
   },
