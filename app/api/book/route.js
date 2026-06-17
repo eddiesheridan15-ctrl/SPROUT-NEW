@@ -13,7 +13,7 @@ import { Resend } from "resend";
 // ----------------------------------------------------------------
 
 const TO_ADDRESS = "hello@renyu.co.uk";
-const FROM_ADDRESS = "Renyu Website <onboarding@resend.dev>";
+const FROM_ADDRESS = "RENYU <noreply@send.renyu.co.uk>";
 
 export async function POST(request) {
   let data;
