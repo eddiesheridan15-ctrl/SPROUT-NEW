@@ -44,9 +44,9 @@ nav .nav-links .btn .dot{background:var(--green-mid)}
 nav.on-dark .nav-links .btn{background:var(--green-deep)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;height:82px;max-width:1240px;margin:0 auto;padding:0 44px}
 .brand{display:flex;align-items:center;gap:12px}
-.brand .mark{width:42px;height:42px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(23,154,75,.3)}
-.brand .mark img{width:42px;height:42px;display:block;object-fit:cover}
-.brand .name{font-family:var(--head);font-weight:700;font-size:21px;letter-spacing:.06em;color:var(--green-deep);line-height:1}
+.brand .mark{width:54px;height:54px;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(23,154,75,.3)}
+.brand .mark img{width:54px;height:54px;display:block;object-fit:cover}
+.brand .name{font-family:Georgia,'Times New Roman',serif;font-weight:500;font-size:25px;letter-spacing:.22em;color:#1c5230;line-height:1}
 .brand .tag{font-family:var(--body);font-size:10px;letter-spacing:.02em;color:var(--muted);margin-top:2px}
 .site-nav{position:sticky;top:0;z-index:50;background:rgba(247,246,240,.82);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.05);transition:background .45s ease,border-color .45s ease}
 .site-nav.on-dark{background:rgba(11,26,16,.72);border-bottom:1px solid rgba(255,255,255,.08)}

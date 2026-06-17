@@ -104,7 +104,7 @@ function DesktopCarousel({ mode }) {
   const SLOT = 328;
   const N = SCREENS.length;
   const CLONES = 3;
-  const [pos, setPos] = useState(0);
+  const [pos, setPos] = useState(1);
   const [animate, setAnimate] = useState(true);
   const [tilt, setTilt] = useState({ key: null, x: 0, y: 0 });
   const lockRef = useRef(false);
@@ -215,7 +215,7 @@ function DesktopCarousel({ mode }) {
 
 /* ===== MOBILE: seamless sliding track ===== */
 function MobileCarousel({ mode }) {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const [showHint, setShowHint] = useState(true);
   const [drag, setDrag] = useState(0);
   const [animate, setAnimate] = useState(true);
