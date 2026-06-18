@@ -135,9 +135,9 @@ export default function TermsPage() {
 
       <h2>12. Contact</h2>
       <p>
-        Questions about these Terms can be sent via{" "}
-        the contact form on our website. A dedicated contact email will be
-        added here on incorporation.
+        Questions about these Terms can be sent to{" "}
+        <a href="mailto:contact@renyu.co.uk">contact@renyu.co.uk</a> or via the
+        contact form on our website.
       </p>
     </LegalShell>
   );
