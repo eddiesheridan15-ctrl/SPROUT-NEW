@@ -126,15 +126,15 @@
 
       <!-- Stat trio -->
       <g transform="translate(20,344)">
-        <rect width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="56" y="32" fill="#1f9d52" font-size="20" font-weight="800" text-anchor="middle">46</text>
         <text x="56" y="50" fill="#8aa39c" font-size="10.5" text-anchor="middle">acts logged</text>
 
-        <rect x="119" y="0" width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect x="119" y="0" width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="175" y="32" fill="#1f9d52" font-size="20" font-weight="800" text-anchor="middle">20</text>
         <text x="175" y="50" fill="#8aa39c" font-size="10.5" text-anchor="middle">day streak</text>
 
-        <rect x="238" y="0" width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect x="238" y="0" width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="294" y="32" fill="#1f9d52" font-size="20" font-weight="800" text-anchor="middle">12</text>
         <text x="294" y="50" fill="#8aa39c" font-size="10.5" text-anchor="middle">badges</text>
       </g>
@@ -167,14 +167,14 @@
       <!-- Recent activity list -->
       <text x="24" y="648" fill="#eaf1ec" font-size="13" font-weight="700">Recent activity</text>
       <g transform="translate(20,660)">
-        <rect width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="24" cy="20" r="12" fill="#d3f0ff"/><path d="M24 13 c5 7 5 11 0 13 c-5 -2 -5 -6 0 -13z" fill="#2b8fd9"/>
         <text x="46" y="18" fill="#eaf1ec" font-size="12" font-weight="600">Beach clean</text>
         <text x="46" y="32" fill="#8aa39c" font-size="10">7m ago</text>
         <text x="338" y="20" fill="#1f9d52" font-size="12" font-weight="800" text-anchor="end">+50</text>
         <text x="338" y="34" fill="#8aa39c" font-size="9" text-anchor="end">&#128205; Brighton</text>
 
-        <rect y="48" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="48" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="24" cy="68" r="12" fill="#e7f4ea"/><path d="M24 60 l5 9 h-10 z M24 64 l5 9 h-10 z" fill="#2f9e54"/><rect x="23" y="71" width="2" height="4" fill="#7a5a3a"/>
         <text x="46" y="66" fill="#eaf1ec" font-size="12" font-weight="600">Nature walk + litter pick</text>
         <text x="46" y="80" fill="#8aa39c" font-size="10">Yesterday</text>

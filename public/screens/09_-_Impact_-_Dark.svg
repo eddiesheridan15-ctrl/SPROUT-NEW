@@ -98,7 +98,7 @@
 
       <!-- LAND / TREE PLANTERS -->
       <g transform="translate(20,424)">
-        <rect width="350" height="88" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect width="350" height="88" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <circle cx="42" cy="44" r="22" fill="#0f1f1a"/>
         <path d="M42 32 l10 18 h-20 z M42 40 l10 18 h-20 z" fill="#2f9e54"/>
         <rect x="40" y="56" width="4" height="9" fill="#7a5a3a"/>
@@ -112,7 +112,7 @@
 
       <!-- WATER / RIVER RESCUERS -->
       <g transform="translate(20,524)">
-        <rect width="350" height="88" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect width="350" height="88" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <circle cx="42" cy="44" r="22" fill="#dff1fb"/>
         <path d="M42 30 c10 14 10 22 0 26 c-10 -4 -10 -12 0 -26z" fill="#2b8fd9"/>
         <text x="76" y="34" fill="#eaf1ec" font-size="13" font-weight="700">River Rescuers</text>
@@ -125,7 +125,7 @@
 
       <!-- WILDLIFE / WILDLIFE WATCHERS -->
       <g transform="translate(20,624)">
-        <rect width="350" height="88" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect width="350" height="88" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <circle cx="42" cy="44" r="22" fill="#fdeede"/>
         <g transform="translate(42,45)">
           <path d="M-9 -6 Q-11 -12 -7 -12 Q-6 -9 -4 -8 Z" fill="#e89a3c"/>

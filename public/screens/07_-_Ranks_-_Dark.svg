@@ -81,15 +81,15 @@
 
       <!-- Quick stats row -->
       <g transform="translate(20,342)">
-        <rect width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="16" y="30" fill="#1f9d52" font-size="20" font-weight="800">531</text>
         <text x="16" y="48" fill="#8aa39c" font-size="10.5">acts logged</text>
 
-        <rect x="119" y="0" width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect x="119" y="0" width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="135" y="30" fill="#1f9d52" font-size="20" font-weight="800">2nd</text>
         <text x="135" y="48" fill="#8aa39c" font-size="10.5">company rank</text>
 
-        <rect x="238" y="0" width="112" height="64" rx="16" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#e8ede8"/>
+        <rect x="238" y="0" width="112" height="64" rx="16" fill="#15241f" stroke-width="1" stroke="#e8ede8"/>
         <text x="254" y="30" fill="#1f9d52" font-size="20" font-weight="800">83%</text>
         <text x="254" y="48" fill="#8aa39c" font-size="10.5">team active</text>
       </g>
@@ -108,37 +108,37 @@
       <text x="356" y="500" fill="#1f9d52" font-size="12" font-weight="600" text-anchor="end">See all</text>
 
       <g transform="translate(20,510)">
-        <rect y="0" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="0" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="21" r="13" fill="#163024"/><text x="26" y="25" fill="#2f7d49" font-size="11" font-weight="700" text-anchor="middle">JS</text>
         <text x="48" y="18" fill="#eaf1ec" font-size="12.5" font-weight="700">Jane Smith</text>
         <text x="48" y="32" fill="#8aa39c" font-size="10.5">Cleaner of Beaches</text>
         <text x="338" y="25" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">1,240</text>
 
-        <rect y="44" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="44" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="65" r="13" fill="#d3e3f0"/><text x="26" y="69" fill="#3f6fa0" font-size="11" font-weight="700" text-anchor="middle">AO</text>
         <text x="48" y="62" fill="#eaf1ec" font-size="12.5" font-weight="700">Aoife O'Brien</text>
         <text x="48" y="76" fill="#8aa39c" font-size="10.5">Tour de London Athlete</text>
         <text x="338" y="69" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">1,110</text>
 
-        <rect y="88" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="88" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="109" r="13" fill="#f0e0cf"/><text x="26" y="113" fill="#9a6b2f" font-size="11" font-weight="700" text-anchor="middle">TM</text>
         <text x="48" y="106" fill="#eaf1ec" font-size="12.5" font-weight="700">Tom Mitchell</text>
         <text x="48" y="120" fill="#8aa39c" font-size="10.5">No-Plastic Ninja</text>
         <text x="338" y="113" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">980</text>
 
-        <rect y="132" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="132" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="153" r="13" fill="#e3d5f0"/><text x="26" y="157" fill="#6b4f9a" font-size="11" font-weight="700" text-anchor="middle">RW</text>
         <text x="48" y="150" fill="#eaf1ec" font-size="12.5" font-weight="700">Ria Walsh</text>
         <text x="48" y="164" fill="#8aa39c" font-size="10.5">Compost Queen</text>
         <text x="338" y="157" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">870</text>
 
-        <rect y="176" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="176" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="197" r="13" fill="#163028"/><text x="26" y="201" fill="#2f7d6b" font-size="11" font-weight="700" text-anchor="middle">DK</text>
         <text x="48" y="194" fill="#eaf1ec" font-size="12.5" font-weight="700">Dan Kelly</text>
         <text x="48" y="208" fill="#8aa39c" font-size="10.5">Meat-Free Maverick</text>
         <text x="338" y="201" fill="#1f9d52" font-size="13" font-weight="800" text-anchor="end">760</text>
 
-        <rect y="220" width="350" height="40" rx="13" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="220" width="350" height="40" rx="13" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <circle cx="26" cy="241" r="13" fill="#f0d5d5"/><text x="26" y="245" fill="#9a4f4f" font-size="11" font-weight="700" text-anchor="middle">LP</text>
         <text x="48" y="238" fill="#eaf1ec" font-size="12.5" font-weight="700">Lucy Park</text>
         <text x="48" y="252" fill="#8aa39c" font-size="10.5">Litter Hunter</text>

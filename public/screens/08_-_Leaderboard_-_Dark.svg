@@ -123,7 +123,7 @@
 
       <g transform="translate(20,380)">
         <!-- row 4 -->
-        <rect width="350" height="50" rx="14" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect width="350" height="50" rx="14" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <text x="22" y="31" fill="#8aa39c" font-size="15" font-weight="800">4</text>
         <circle cx="58" cy="25" r="15" fill="#dfeef0"/><text x="58" y="30" fill="#3f7f8f" font-size="13" font-weight="700" text-anchor="middle">O</text>
         <text x="82" y="22" fill="#eaf1ec" font-size="13" font-weight="700">Ocean's Eleven</text>
@@ -131,7 +131,7 @@
         <text x="338" y="31" fill="#1f9d52" font-size="14" font-weight="800" text-anchor="end">7,540</text>
 
         <!-- row 5 -->
-        <rect y="58" width="350" height="50" rx="14" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="58" width="350" height="50" rx="14" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <text x="22" y="89" fill="#8aa39c" font-size="15" font-weight="800">5</text>
         <circle cx="58" cy="83" r="15" fill="#efe4d2"/><text x="58" y="88" fill="#9a7b3f" font-size="13" font-weight="700" text-anchor="middle">R</text>
         <text x="82" y="80" fill="#eaf1ec" font-size="13" font-weight="700">Recycle &amp; Roll</text>
@@ -139,7 +139,7 @@
         <text x="338" y="89" fill="#1f9d52" font-size="14" font-weight="800" text-anchor="end">6,980</text>
 
         <!-- row 6 -->
-        <rect y="116" width="350" height="50" rx="14" fill="#15241f" stroke="#2a4036" stroke-width="1" stroke="#eef2ee"/>
+        <rect y="116" width="350" height="50" rx="14" fill="#15241f" stroke-width="1" stroke="#eef2ee"/>
         <text x="22" y="147" fill="#8aa39c" font-size="15" font-weight="800">6</text>
         <circle cx="58" cy="141" r="15" fill="#e2dcf0"/><text x="58" y="146" fill="#6b5f9f" font-size="13" font-weight="700" text-anchor="middle">B</text>
         <text x="82" y="138" fill="#eaf1ec" font-size="13" font-weight="700">Byte-Sized Greens</text>
