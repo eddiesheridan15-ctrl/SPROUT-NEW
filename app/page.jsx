@@ -65,7 +65,16 @@ export default function Home() {
     <>
       <nav id="nav">
         <div className="nav-in">
-          <div className="brand">
+          <a
+            href="#top"
+            className="brand"
+            aria-label="Back to top"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setMenuOpen(false);
+            }}
+          >
             <span className="mark">
               <Mark />
             </span>
@@ -74,7 +83,7 @@ export default function Home() {
               <br />
               <span className="tag">Bring your team together. Leave the planet better.</span>
             </span>
-          </div>
+          </a>
           <div className="nav-links">
             <a href="#how">How It Works</a>
             <a href="#impact">Impact</a>

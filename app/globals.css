@@ -572,3 +572,8 @@ footer .tg{color:var(--muted);font-size:15px}
   .li-cascade .li-pos-back,.li-cascade .li-pos-mid{display:none}
   .li-cascade .li-pos-front{box-shadow:0 24px 60px rgba(13,42,23,.2)}
 }
+
+/* Nav brand as a clickable home link (appended last per source-order rule) */
+a.brand{text-decoration:none;cursor:pointer}
+a.brand:hover,a.brand:focus,a.brand:visited,a.brand:active{text-decoration:none}
+a.brand .name{color:#1c5230}
